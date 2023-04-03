@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+header {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: right;
+    text-indent: 15px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* INDEX ****************************************** */
+.divSearch {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 5px;
+    width: 300px;
+    margin: 0 auto;
+    font-size: 1.5em;
+}
+
+i.lupa {
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 3px black;
+    margin-left: 5px;
+}
+
+.divContainer {
+    width: 90%;
+    margin: 10px auto;
+    border-bottom: 1px dotted black;
+    padding: 10px;
+}
+
+.secSearch {
+    display: block;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.secSearch input {
+    text-indent: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px groove black;
+    width: 250px;
+    color: darkslategray
+}
+
+.divContainer img {
+    display: block;
+    width: 98%;
+    height: 300px;
+    object-fit: contain;
+    background-color: red;
+    margin: 0 auto;
+}
+
+p.title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: rgb(68, 68, 68);
+    padding: 5px 15px;
+}
+
+p.date {
+    font-size: 0.7em;
+    padding: 0 15px;
+    font-style: italic;
+    color: darkslategray;
+}
+
+a.author {
+    padding: 3px 15px;
+    color: darkblue;
+    text-decoration: none;
+}
+
+p.extract {
+    font-size: 1.2em;
+    font-style: italic;
+    color: rgb(51, 0, 0);
+    padding: 5px 15px;
+}
+
+a.readMore {
+    display: inline;
+    color: red;
+    text-decoration: none;
+    padding: 5px 15px;
+}
+
+
+
+
+
+
+
+
+/* FIN INDEX ****************************************** */

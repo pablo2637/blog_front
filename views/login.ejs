@@ -1,0 +1,28 @@
+<%- include( 'templates/header' ,{urlTitle:'Blog: login'} ) %>
+
+    <main>
+        <h1>Login</h1>
+
+        <section>
+            <div>
+                <form action="../user/login" method="POST">
+
+                    <label for="email">Email:</label>                    
+                    <input type="text" name="email" id="email" value="<%- user %>">                                       
+
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+
+                    <input id="btnSubmit" type="submit" value="Ingresar">
+                </form>
+
+                <% if (error != '') { %>
+                    <p id="loginError"><%- error  %></p> 
+                <% } %>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('templates/footer.ejs') %>
