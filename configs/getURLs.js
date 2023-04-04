@@ -63,6 +63,11 @@ const getURLs = (tipo, data) => {
             method = 'POST';
             break;
 
+        case 'logoutUser':
+            url = `${urlBaseBack}/${urlAPIUser}/logout`;
+            method = 'POST';
+            break;
+
     };
 
     return { url, method };

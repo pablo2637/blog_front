@@ -20,8 +20,7 @@ const getEntries = async (req, res) => {
             });
 
             const user = await getUserDataCookie(req, res);
-            console.log(user)
-
+            console.log('blog user',user)
             res.render('blog', {
                 urlTitle: 'Blog: entradas',
                 msg: '',
@@ -31,9 +30,11 @@ const getEntries = async (req, res) => {
         }
 
     } catch (e) {
+        console.log('errrorr',e)
         res.status(500).render('index', {
             urlTitle: 'Blog: entradas',
-            msg: `Error en getEntries: ${e}`
+            msg: `Error en getEntries: ${e}`,
+            user:''
         });
 
     }
@@ -55,10 +56,13 @@ const searchEntries = async (req, res) => {
                 entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
             })
 
+            const user = await getUserDataCookie(req, res);
+
             res.render('blog', {
                 urlTitle: 'Blog: entradas',
                 msg: '',
-                entries: data
+                entries: data,
+                user
             });
         }
 
@@ -87,10 +91,13 @@ const searchEntriesByEmail = async (req, res) => {
                 entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
             })
 
+            const user = await getUserDataCookie(req, res);
+
             res.render('blog', {
                 urlTitle: 'Blog: entradas',
                 msg: 'email',
-                entries: data
+                entries: data,
+                user
             });
         }
 

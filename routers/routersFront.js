@@ -8,7 +8,7 @@ const {
 
 
 router.get('/', (req, res) => {
-    res.render('index', { urlTitle: 'Blog' });
+    res.render('index', { urlTitle: 'Blog', user: '' });
 });
 
 

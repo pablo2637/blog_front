@@ -12,7 +12,23 @@
 
 <body>
     <header>
-       <div>
-        <h1>Blog.com</h1>
-       </div>
-    </header>    
+        <div>
+            <a href="/">
+                <h1>Blog.com</h1>
+            </a>
+        </div>
+
+        <div>
+            <nav>
+
+                <% if (user) { %>
+                    <a href="/blog">Buscador</a>
+                    <a href="/user/logout">Logout</a>
+                <% } else { %>
+                    <a href="/user/login">Login</a>
+                    <a href="/user/register">Resgistrarse</a>
+                <% } %>
+
+            </nav>
+        </div>
+    </header>

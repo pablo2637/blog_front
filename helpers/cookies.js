@@ -1,5 +1,6 @@
 
 const setUserCookie = async (req, res, user) => {
+
     await res.cookie('userData', user,
         {
             httpOnly: true,
@@ -11,6 +12,7 @@ const setUserCookie = async (req, res, user) => {
 
 
 const setUserToken = async (req, res, token) => {
+
     await res.cookie('userToken', token,
         {
             httpOnly: true,
@@ -22,18 +24,21 @@ const setUserToken = async (req, res, token) => {
 
 
 const getUserDataCookie = async (req, res) => {
+    
     const { userData } = req.cookies;
     return userData;
 };
 
 
 const getUserTokenCookie = async (req, res) => {
+    
     const { userToken } = req.cookies;
     return userToken;
 };
 
 
 const clearCookies = async (req, res) => {
+
     await res.clearCookie('userData');
     await res.clearCookie('userToken');
 }
