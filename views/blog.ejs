@@ -1,0 +1,43 @@
+<%- include( 'templates/header' ,{urlTitle,user} ) %>
+
+    <main>
+        <h1>Index</h1>
+        <span><%- msg %></span>
+        <h2><%- user.name %></h2>
+
+        <section class="secSearch">
+            <form action="/search/" method="POST">
+                <div class="divSearch">
+                    <input type="text" name="text" id="txtSearch" placeholder="Escribe aquí...">
+                    <span><i class="lupa fa-solid fa-magnifying-glass"></i></span>
+                </div>
+            </form>
+        </section>
+
+        <% if (entries.ok) { %>
+
+            <article>
+
+                <% entries.data.forEach(entry=> { %>
+
+                    <div class="divContainer">
+                        <p class="title"><%- entry.title %></p>
+
+                        <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+                        <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
+
+                        <img src="<%- entry.image %>" alt="">
+
+                        <p class="extract"><%- entry.extract %></p>
+                        <a class="readMore" href="">Leer más...</a>
+                    </div>
+
+                    <% }) %>
+
+            </article>
+
+            <% } %>
+
+    </main>
+
+    <%- include('templates/footer.ejs') %>

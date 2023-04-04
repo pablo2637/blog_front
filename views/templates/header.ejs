@@ -6,11 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d28a6644c9.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/main.css">
-    <title> <%- tituloURL %> </title>
+    <link rel="stylesheet" href="../css/main.css">
+    <title> <%- urlTitle %> </title>
 </head>
 
 <body>
     <header>
-       
-    </header>    
+        <div>
+            <a href="/">
+                <h1>Blog.com</h1>
+            </a>
+        </div>
+
+        <div>
+            <nav>
+
+                <% if (user) { %>
+                    <a href="/blog">Buscador</a>
+                    <a href="/user/logout">Logout</a>
+                <% } else { %>
+                    <a href="/user/login">Login</a>
+                    <a href="/user/register">Resgistrarse</a>
+                <% } %>
+
+            </nav>
+        </div>
+    </header>
