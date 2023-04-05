@@ -1,0 +1,18 @@
+<%- include( 'templates/header' ,{urlTitle,user} ) %>
+
+    <div class="divContainer">
+        <% if (entry.email==user.email) { %>
+            <a id="btnEdit" href="">Editar</a>     
+        <% } %>
+        
+        <p class="title"><%- entry.title %></p>
+
+        <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+        <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
+
+        <img src="/media/<%- entry.image %>" alt="">
+
+        <p class="content"><%- entry.content %></p>
+    </div>
+
+    <%- include('templates/footer.ejs') %>

@@ -20,19 +20,9 @@
 
         <div>
             <nav>
-                <button id='btnMenu'><i  class="fa-solid fa-bars"></i></button>
-                
-                <div id="divMenu">
-                    <% if (user) { %>
-                        <a href="/blog">Buscador</a>
-                        <a href="">Mis publicaciones</a>
-                        <a href="">Cambiar contraseña</a>
-                        <a href="/user/logout">Logout</a>
-                    <% } else { %>
-                        <a href="/user/login">Login</a>
-                        <a href="/user/register">Resgistrarse</a>
-                    <% } %>
-                </div>
+
+                <a href="/admin/">Dashboard</a>
+                <a href="/user/logout">Logout</a>
 
             </nav>
         </div>

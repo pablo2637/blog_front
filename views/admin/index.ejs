@@ -1,0 +1,98 @@
+<%- include( 'templates/header' ,{urlTitle} ) %>
+
+    <main>
+        <h1 class="h1Admin">Administrador</h1>
+
+        <p>Total de entradas: <%- entries.totalEntries %></p>
+        <p>Entradas por página: <%- entries.limit %></p>
+        <p>Total de páginas: <%- entries.totalPages %></p>
+        <p>Página actual: <%- entries.page %></p>
+
+
+        <form action="/admin" method="GET">
+
+            <label for="limit">Entradas por página:</label>
+            <select name="limit" id="limit">
+                <% for( let i=1; i < 6; i++ ) { %>
+
+                    <% if (entries.limit==(i*10)) { %>
+                        <option value="<%- i*10 %>" selected>Página <%- i*10 %></option>
+                        <% } else { %>
+                            <option value="<%- i*10 %>">Página <%- i*10 %></option>
+                            <% } %>
+
+                                <% } %>
+            </select>
+
+            <label for="page">Ir a:</label>
+            <select name="page" id="page">
+
+                <% for( let i=1; i <=entries.totalPages; i++ ) { %>
+
+                    <% if (entries.page==i) { %>
+                        <option value="<%- i %>" selected>Página <%- i %></option>
+                        <% } else { %>
+                            <option value="<%- i %>">Página <%- i %></option>
+                            <% } %>
+
+                                <% } %>
+
+            </select>
+
+            <input type="submit" value="Actualizar">
+
+        </form>
+
+        <table id="tabUsers">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Imagen</th>
+                    <th>Autor</th>
+                    <th>Título</th>
+                    <th>Extracto</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% entries.data.forEach((entry,ind)=> { %>
+
+                    <tr>
+                        <td><%- ind+1 %></td>
+                        <td><img src="/media/<%- entry.image %>" alt="" width="50"></td>
+                        <td><%- entry.name %></td>
+                        <td><%- entry.title %></td>
+                        <td><%- entry.extract %></td>
+                        <td><%- entry.date %> <%- entry.time %></td>
+                        <td>
+                            <a href="">ver</a>
+                            <a href="/admin/edit/<%- entry.entryid %>">editar</a>
+                            <a href="">borrar</a>
+                        </td>
+
+                    </tr>
+
+                    <% }) %>
+
+            </tbody>
+
+        </table>
+
+        <div id="divPages">
+            <p>Páginas:</p>
+            <% if (entries.page !=1) { %>
+                <a href="/admin?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
+                <% } %>
+
+                    <a href=""><%- entries.page %></a>
+
+                    <% if (entries.totalPages !=entries.page) { %>
+                        <a href="/admin?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
+                        <% } %>
+        </div>
+
+    </main>
+
+    <%- include('templates/footer.ejs') %>

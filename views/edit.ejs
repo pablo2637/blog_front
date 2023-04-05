@@ -1,0 +1,48 @@
+<%- include( 'templates/header' ,{urlTitle,user} ) %>
+
+    <main>
+        <h1 class="h1Admin">Administrador: Editar</h1>
+
+        <div class="divEdit">
+
+            <form action="/user/edit" method="post" enctype="multipart/form-data">
+
+                <label for="name">Autor:</label>
+                <input type="text" name="name" id="name" value="<%- entry.name %>" readonly>
+
+                <label for="date">Fecha de creación:</label>
+                <input type="text" name="date" id="date" value="<%- entry.date %> <%- entry.time%>" readonly>
+
+                <label for="title">Título:</label>
+                <input type="text" name="title" id="title" value="<%- entry.title %>">
+                <span class="spnError"><%- msg.title %></span>
+
+                <label for="extract">Extracto:</label>
+                <input type="text" name="extract" id="extract" value="<%- entry.extract %>">
+                <span class="spnError"><%- msg.extract %></span>
+
+                <label for="content">Contenido:</label>
+                <textarea name="content" id="content" rows="4"><%- entry.content %></textarea>
+                <span class="spnError"><%- msg.content %></span>
+
+                <img src="/media/<%- entry.image %>" alt="">
+
+                <label for="image">Imagen:</label>
+                <input type="text" name="image" id="image" value="<%- entry.image %>" readonly>
+                <span class="spnError"><%- msg.image %></span>
+                <input type="file" name="imageFile" id="imageFile">
+
+                <input type="hidden" name="entryID" value="<%- entry.entryid %>">
+                <input type="hidden" name="entryid" value="<%- entry.entryid %>">
+
+                <div class="btns">
+                    <input id="btnSubmit" type="submit" value="Guardar Cambios">
+                    <a id="btnCancelar" href="/blog">Cancelar</a>
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+    <%- include('templates/footer.ejs') %>
