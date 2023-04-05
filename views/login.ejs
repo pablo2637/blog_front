@@ -1,25 +1,28 @@
 <%- include( 'templates/header' ,{urlTitle,user} ) %>
 
     <main>
-        <h1>Login</h1>
+        <h1 class="h1Admin">Login</h1>
 
         <section>
-            <div>
+            <div id="divLogin">
                 <form action="../user/login" method="POST">
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email" value="<%- user %>">
+                    </div>
 
-                    <label for="email">Email:</label>                    
-                    <input type="text" name="email" id="email" value="<%- user %>">                                       
-
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password">
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password">
+                    </div>
 
                     <input id="btnSubmit" type="submit" value="Ingresar">
                 </form>
 
-                <% if (error != '') { %>
-                    <p id="loginError"><%- error  %></p> 
-                <% } %>
-                
+                <% if (error !='' ) { %>
+                    <p id="loginError"><%- error %></p>
+                    <% } %>
+
             </div>
         </section>
 

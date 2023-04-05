@@ -20,7 +20,7 @@ const getEntries = async (req, res) => {
             });
 
             const user = await getUserDataCookie(req, res);
-            console.log('blog user',user)
+
             res.render('blog', {
                 urlTitle: 'Blog: entradas',
                 msg: '',
@@ -30,11 +30,10 @@ const getEntries = async (req, res) => {
         }
 
     } catch (e) {
-        console.log('errrorr',e)
-        res.status(500).render('index', {
+        console.log('errrorr', e)
+        res.status(500).send({
             urlTitle: 'Blog: entradas',
-            msg: `Error en getEntries: ${e}`,
-            user:''
+            msg: `Error en getEntries: ${e}`
         });
 
     }
@@ -60,14 +59,13 @@ const searchEntries = async (req, res) => {
 
             res.render('blog', {
                 urlTitle: 'Blog: entradas',
-                msg: '',
                 entries: data,
                 user
             });
         }
 
     } catch (e) {
-        res.status(500).render('index', {
+        res.status(500).send('index', {
             urlTitle: 'Blog: entradas',
             msg: `Error en searchEntries: ${e}`
         });
@@ -83,7 +81,7 @@ const searchEntriesByEmail = async (req, res) => {
         const { url, method } = getURLs('getEntriesByEmail', req);
 
         const { data } = await fetchData(url, method);
-        console.log(data)
+
         if (data.ok) {
 
             data.data.map(entry => {
@@ -102,9 +100,43 @@ const searchEntriesByEmail = async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).render('index', {
+        res.status(500).send({
             urlTitle: 'Blog: entradas',
             msg: `Error en searchEntriesByEmail: ${e}`
+        });
+
+    }
+};
+
+
+const getEntryByID = async (req, res) => {
+
+    try {
+
+        const { url, method } = getURLs('getEntryByID', req);
+
+        const { data } = await fetchData(url, method);
+        console.log('data', data)
+        if (data.ok) {
+
+            const entry = data.data[0];
+
+            entry.date = new Date(entry.date).toLocaleDateString();
+            entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+
+            const user = await getUserDataCookie(req, res);
+
+            res.render('detail', {
+                urlTitle: 'Blog: entrada',
+                entry,
+                user
+            });
+        }
+
+    } catch (e) {
+        res.status(500).send({
+            urlTitle: 'Blog: entrada',
+            msg: `Error en getEntryByID: ${e}`
         });
 
     }
@@ -114,5 +146,6 @@ const searchEntriesByEmail = async (req, res) => {
 module.exports = {
     getEntries,
     searchEntries,
-    searchEntriesByEmail
+    searchEntriesByEmail,
+    getEntryByID
 }

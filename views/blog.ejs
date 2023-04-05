@@ -1,7 +1,7 @@
 <%- include( 'templates/header' ,{urlTitle,user} ) %>
 
     <main>
-        <h1>Index</h1>
+        <h1 class="h1Admin">Entradas</h1>
         <span><%- msg %></span>
         <h2><%- user.name %></h2>
 
@@ -26,10 +26,10 @@
                         <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
                         <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
 
-                        <img src="<%- entry.image %>" alt="">
+                        <img src="/media/<%- entry.image %>" alt="">
 
                         <p class="extract"><%- entry.extract %></p>
-                        <a class="readMore" href="">Leer más...</a>
+                        <a class="readMore" href="/detail/<%- entry.entryid %>">Leer más...</a>
                     </div>
 
                     <% }) %>

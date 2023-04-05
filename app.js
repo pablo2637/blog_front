@@ -7,7 +7,7 @@ port = process.env.PORT;
 
 const cookieParser = require('cookie-parser');
 
-app.use(cookieParser())                              //Cookies
+app.use(cookieParser());                            //Cookies
 
 app.use(cors());                                    //Cors
 app.use(express.static(__dirname + '/public'));     //Carpeta static
@@ -20,8 +20,9 @@ app.use(express.json());                            // Parse application/json
 
 
 //Rutas
-app.use('/', require('./routers/routersFront'))     //Front
-app.use('/user', require('./routers/routerUsers'))     //Users
+app.use('/', require('./routers/routersFront'));        //Front
+app.use('/user', require('./routers/routerUsers'));     //Users
+app.use('/admin', require('./routers/routerAdmin'));     //Users
 
 
 //404

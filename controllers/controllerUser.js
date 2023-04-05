@@ -42,7 +42,7 @@ const loginUser = async (req, res, next) => {
             await setUserToken(req, res, token);
 
             if (user.rol == 'admin')
-                res.redirect('/blog');
+                res.redirect('/admin');
 
             else
                 res.redirect('/blog');
@@ -100,12 +100,12 @@ const logoutUser = async (req, res) => {
 
 
 const redirectUser = async (req, res) => {
-    console.log('redirect', req.cookies)
+
     const { rol } = await getUserDataCookie(req, res);
     console.log('rol', rol)
 
     if (rol == 'admin')
-        res.redirect('/blog');
+        res.redirect('/admin');
 
     else
         res.redirect('/blog');

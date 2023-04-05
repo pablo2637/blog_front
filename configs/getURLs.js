@@ -3,7 +3,7 @@ const urlBaseBack = process.env.URL_BASE_BACK;
 const urlAPIEntries = 'api/entries';
 const urlAPIUser = 'api/users';
 
-const limitePorDefecto = 8;
+const limitePorDefecto = 10;
 
 const getURLs = (tipo, data) => {
 
@@ -22,36 +22,32 @@ const getURLs = (tipo, data) => {
 
         //API Entries ***********************
         case 'getEntries':
-            url = `${urlBaseBack}/${urlAPIEntries}?limit=${limit}&page=${page}`;
-            method = 'GET';
+            url = `${urlBaseBack}/${urlAPIEntries}?limit=${limit}&page=${page}`;            
             break;
 
         case 'getEntriesBySearch':
-            url = `${urlBaseBack}/${urlAPIEntries}/search/${body.text}?limit=${limit}&page=${page}`;
-            method = 'GET';
+            url = `${urlBaseBack}/${urlAPIEntries}/search/${body.text}?limit=${limit}&page=${page}`;            
             break;
 
         case 'getEntriesByEmail':
-            url = `${urlBaseBack}/${urlAPIEntries}/email/${params.email}?limit=${limit}&page=${page}`;
-            method = 'GET';
+            url = `${urlBaseBack}/${urlAPIEntries}/email/${params.email}?limit=${limit}&page=${page}`;            
             break;
 
         case 'getEntryByID':
-            url = `${urlBaseBack}/${urlAPIEntries}/id/${params.id}`;
-            method = 'GET';
+            url = `${urlBaseBack}/${urlAPIEntries}/id/${params.entryID}`;
             break;
 
-        case 'postMovieInt':
+        case 'postEntry':
             url = `${urlBaseBack}/${urlAPIEntries}`;
             method = 'POST';
             break;
 
-        case 'putMovieInt':
+        case 'putEntry':
             url = `${urlBaseBack}/${urlAPIEntries}`;
             method = 'PUT';
             break;
 
-        case 'deleteMovieInt':
+        case 'deleteEntry':
             url = `${urlBaseBack}/${urlAPIEntries}/${params.entryID}`;
             method = 'DELETE';
             break;
@@ -66,6 +62,10 @@ const getURLs = (tipo, data) => {
         case 'logoutUser':
             url = `${urlBaseBack}/${urlAPIUser}/logout`;
             method = 'POST';
+            break;
+
+        case 'getUsers':
+            url = `${urlBaseBack}/${urlAPIUser}`;
             break;
 
     };

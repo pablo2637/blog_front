@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+const { isNotAdmin } = require('../middlewares/isAdmin');
+
 const {
     getEntries,
     searchEntries,
-    searchEntriesByEmail } = require('../controllers/controllerFront');
+    searchEntriesByEmail,
+    getEntryByID } = require('../controllers/controllerFront');
 
 
 router.get('/', (req, res) => {
@@ -12,13 +15,24 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/blog', getEntries);
+router.get('/blog', [
+    isNotAdmin
+], getEntries);
 
 
-router.post('/search/', searchEntries);
+router.get('/detail/:entryID', [
+    isNotAdmin
+], getEntryByID);
 
 
-router.get('/email/:email', searchEntriesByEmail);
+router.post('/search/', [
+    isNotAdmin
+], searchEntries);
+
+
+router.get('/email/:email', [
+    isNotAdmin
+], searchEntriesByEmail);
 
 
 module.exports = router
