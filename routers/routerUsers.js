@@ -6,9 +6,13 @@ const {
     showLogin,
     logoutUser,
     showRegister,
-    registerUser } = require('../controllers/controllerUser');
+    registerUser,
+    showChange,
+    changePassword } = require('../controllers/controllerUser');
 
 const { validateJWT } = require('../middlewares/validarJwt');
+
+const { isNotAdmin } = require('../middlewares/isAdmin');
 
 
 router.get('/login', [
@@ -26,6 +30,14 @@ router.get('/register', showRegister);
 
 
 router.post('/register', registerUser);
+
+
+router.get('/change', [
+    isNotAdmin
+], showChange);
+
+
+router.post('/changePass',changePassword);
 
 
 module.exports = router

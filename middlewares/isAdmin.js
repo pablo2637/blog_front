@@ -9,6 +9,7 @@ const isAdmin = async (req, res, next) => {
 
         if (user.rol == 'admin')
             next();
+            
         else
             res.redirect('/blog');
 

@@ -41,7 +41,7 @@ const registerUser = async (req, res, next) => {
 
     let err = {};
     try {
-        console.log('body', req.body)
+
         if (req.body.password != req.body.passwordR) {
             err.passwordR = 'Los passwords no coinciden, por favor, revísalos.';
 
@@ -55,7 +55,7 @@ const registerUser = async (req, res, next) => {
         const { url, method } = getURLs('postUser', req);
 
         const { data } = await fetchData(url, method, req.body);
-        console.log('data', data)
+
         if (data.ok) {
 
             const user = {
@@ -214,6 +214,76 @@ const renewToken = async (req, res) => {
 };
 
 
+const showChange = async (req, res) => {
+
+    const user = await getUserDataCookie(req, res);
+
+    res.render('changePassword', {
+        urlTitle: 'Blog: cambiar password',
+        error: '',
+        user
+    });
+
+};
+
+
+
+const changePassword = async (req, res, next) => {
+
+    let err = {};
+    try {
+
+        if (req.body.newPassword != req.body.passwordR) {
+            err.passwordR = 'Los passwords no coinciden, por favor, revísalos.';
+
+            return res.render('changePassword', {
+                urlTitle: 'Blog: cambiar password error',
+                user: req.body,
+                error: err
+            });
+        }
+
+        const { url, method } = getURLs('changePassword', req);
+
+        const { data } = await fetchData(url, method, req.body);
+        
+        if (data.ok) {
+            res.redirect('/blog');
+
+        } else {
+
+            if (data.errors) {
+
+                const e = data.errors;
+
+                if (e.oldPassword)
+                    err.oldPassword = e.oldPassword.msg;
+
+                if (e.newPassword)
+                    err.newPassword = e.newPassword.msg;
+
+            } else if (data.error)
+                err.oldPassword = data.error;
+
+            res.render('changePassword', {
+                urlTitle: 'Blog: cambiar password error',
+                user: req.body,
+                error: err
+            });
+        }
+
+
+    } catch (e) {
+        console.log('errorrrr', e)
+        return res.status(500).json({
+            ok: false,
+            msg: `Error en changePassword: ${e}`
+        });
+
+    };
+};
+
+
 module.exports = {
     loginUser,
     showLogin,
@@ -221,5 +291,7 @@ module.exports = {
     logoutUser,
     renewToken,
     showRegister,
-    registerUser
+    registerUser,
+    showChange,
+    changePassword
 }
