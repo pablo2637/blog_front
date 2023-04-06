@@ -74,8 +74,6 @@ const showEdit = async (req, res) => {
 
 const editEntry = async (req, res) => {
 
-    // console.log('req.body', req.body, 'req.file', req.file)
-
     try {
 
         let oldPic = req.body.image;
@@ -145,8 +143,81 @@ const editEntry = async (req, res) => {
 };
 
 
+const getEntryByID = async (req, res) => {
+
+    try {
+
+        const { url, method } = getURLs('getEntryByID', req);
+
+        const { data } = await fetchData(url, method);
+
+        if (data.ok) {
+
+            const entry = data.data[0];
+
+            entry.date = new Date(entry.date).toLocaleDateString();
+            entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+
+            res.render('admin/detail', {
+                urlTitle: 'Blog: Administrador: entrada',
+                entry
+            });
+        }
+
+    } catch (e) {
+        res.status(500).send({
+            urlTitle: 'Blog: Administrador: entrada',
+            msg: `Error en getEntryByID: ${e}`
+        });
+
+    }
+};
+
+
+const deleteEntry = async (req, res) => {
+
+    try {
+
+        let imageDelete;
+
+        const { url: urlGE, method: methodGE } = getURLs('getEntryByID', req);
+        const { data: dataGE } = await fetchData(urlGE, methodGE);
+
+        if (dataGE.ok)
+            imageDelete = dataGE.data[0].image;
+
+
+        const { url, method } = getURLs('deleteEntry', req);
+        const { data } = await fetchData(url, method);
+
+        if (data.ok) {
+
+            try {
+                await fs.unlink(`./public/media/${imageDelete}`);
+
+            } catch (error) {
+                console.log('error borrando DeleteEntry', error);
+            }
+
+            res.redirect('/admin');
+
+        }
+
+    } catch (e) {
+        console.log('errrorr', e)
+        res.status(500).send({
+            urlTitle: 'Blog: Administrador: entradas',
+            msg: `Error en deleteEntry: ${e}`,
+        });
+
+    }
+};
+
+
 module.exports = {
     showAdmin,
     showEdit,
-    editEntry
+    editEntry,
+    deleteEntry,
+    getEntryByID
 }

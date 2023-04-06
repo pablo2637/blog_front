@@ -39,7 +39,9 @@
 
             </select>
 
-            <input type="submit" value="Actualizar">
+            <button type="submit"><i class="fa-solid fa-arrows-rotate"></i>Actualizar</button>
+
+            <!-- <input type="submit" value="Actualizar"> -->
 
         </form>
 
@@ -60,18 +62,24 @@
                 <% entries.data.forEach((entry,ind)=> { %>
 
                     <tr>
-                        <td><%- ind+1 %></td>
+                        <td><%- ind + 1 + ((entries.page-1) * entries.limit) %></td>
                         <td><img src="/media/<%- entry.image %>" alt="" width="50"></td>
                         <td><%- entry.name %></td>
                         <td><%- entry.title %></td>
                         <td><%- entry.extract %></td>
                         <td><%- entry.date %> <%- entry.time %></td>
                         <td>
-                            <a href="">ver</a>
-                            <a href="/admin/edit/<%- entry.entryid %>">editar</a>
-                            <a href="">borrar</a>
+                            <a href="/admin/detail/<%- entry.entryid %>"><i class="fa-brands fa-readme"></i></a>                                                       
+                            <a href="/admin/edit/<%- entry.entryid %>"><i class="fa-solid fa-pen-to-square"></i></a>                            
+                            <button><i data-entryid="<%- entry.entryid %>" class="deleteEntry fa-solid fa-eraser"></i></button>
                         </td>
+                    </tr>
 
+                    <tr class="ocultar" id="tr<%- entry.entryid %>">
+                        <td colspan="7">¿Estás seguro? Se eliminará definitivamente esta entrada.
+                            <a href="/admin/delete/<%- entry.entryid %>"><i class="fa-solid fa-eraser"></i></a>
+                            <button><i data-entryid="<%- entry.entryid %>" class="cancelDelete fa-solid fa-rectangle-xmark"></i></button> 
+                        </td>
                     </tr>
 
                     <% }) %>
@@ -84,13 +92,13 @@
             <p>Páginas:</p>
             <% if (entries.page !=1) { %>
                 <a href="/admin?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
-                <% } %>
+            <% } %>
 
-                    <a href=""><%- entries.page %></a>
+            <a href=""><%- entries.page %></a>
 
-                    <% if (entries.totalPages !=entries.page) { %>
-                        <a href="/admin?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
-                        <% } %>
+            <% if (entries.totalPages !=entries.page) { %>
+                <a href="/admin?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
+            <% } %>
         </div>
 
     </main>

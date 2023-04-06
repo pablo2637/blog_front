@@ -6,7 +6,9 @@ const { upload } = require('../helpers/uploadImg');
 const {
     showAdmin,
     showEdit,
-    editEntry } = require('../controllers/controllerAdmin');
+    editEntry,
+    deleteEntry,
+    getEntryByID } = require('../controllers/controllerAdmin');
 
 const { isAdmin } = require('../middlewares/isAdmin');
 
@@ -25,6 +27,16 @@ router.post('/edit', [
     isAdmin,
     upload
 ], editEntry);
+
+
+router.get('/delete/:entryID', [
+    isAdmin
+], deleteEntry);
+
+
+router.get('/detail/:entryID', [
+    isAdmin
+], getEntryByID);
 
 
 module.exports = router
