@@ -6,7 +6,7 @@ const setUserCookie = async (req, res, user) => {
             httpOnly: true,
             secure: false,
             sameSite: 'lax',
-            maxAge: 1000 * 60 * 30
+            maxAge: 1000 * 60 * 60
         });
 };
 
@@ -18,7 +18,7 @@ const setUserToken = async (req, res, token) => {
             httpOnly: true,
             secure: false,
             sameSite: 'lax',
-            maxAge: 1000 * 60 * 30
+            maxAge: 1000 * 60 * 60
         });
 };
 

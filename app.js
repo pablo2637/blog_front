@@ -22,7 +22,7 @@ app.use(express.json());                            // Parse application/json
 //Rutas
 app.use('/', require('./routers/routersFront'));        //Front
 app.use('/user', require('./routers/routerUsers'));     //Users
-app.use('/admin', require('./routers/routerAdmin'));     //Users
+app.use('/admin', require('./routers/routerAdmin'));    //Admin
 
 
 //404

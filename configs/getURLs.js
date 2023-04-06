@@ -73,6 +73,12 @@ const getURLs = (tipo, data) => {
             method = 'POST';
             break;
 
+        case 'changePassword':
+            url = `${urlBaseBack}/${urlAPIUser}/changePassword`;
+            method = 'PUT';
+            break;
+
+
     };
 
     return { url, method };
