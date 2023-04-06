@@ -21,11 +21,96 @@ const showLogin = async (req, res) => {
         error: ''
     });
 
-}
+};
+
+
+const showRegister = async (req, res) => {
+
+    await clearCookies(req, res);
+
+    res.render('register', {
+        urlTitle: 'Blog: registro',
+        user: '',
+        error: ''
+    });
+
+};
+
+
+const registerUser = async (req, res, next) => {
+
+    let err = {};
+    try {
+        console.log('body', req.body)
+        if (req.body.password != req.body.passwordR) {
+            err.passwordR = 'Los passwords no coinciden, por favor, revísalos.';
+
+            return res.render('register', {
+                urlTitle: 'Blog: registro error',
+                user: req.body,
+                error: err
+            });
+        }
+
+        const { url, method } = getURLs('postUser', req);
+
+        const { data } = await fetchData(url, method, req.body);
+        console.log('data', data)
+        if (data.ok) {
+
+            const user = {
+                id: data.data[0].userid,
+                name: data.data[0].name,
+                email: data.data[0].email,
+                rol: 'user'
+            };
+
+            const token = await generateJwt(user);
+
+            await setUserCookie(req, res, user);
+            await setUserToken(req, res, token);
+
+            res.redirect('/blog');
+
+        } else {
+
+            if (data.errors) {
+
+                const e = data.errors;
+
+                if (e.name)
+                    err.name = e.name.msg;
+
+                if (e.password)
+                    err.password = e.password.msg;
+
+                if (e.email)
+                    err.email = e.email.msg;
+
+            }
+
+            res.render('register', {
+                urlTitle: 'Blog: registro error',
+                user: req.body,
+                error: err
+            });
+        }
+
+
+    } catch (e) {
+        console.log('errorrrr', e)
+        return res.status(500).json({
+            ok: false,
+            msg: `Error en registerUser: ${e}`
+        });
+
+    };
+};
 
 
 const loginUser = async (req, res, next) => {
 
+    let error;
     try {
 
         const { url, method } = getURLs('loginUser', req);
@@ -65,7 +150,7 @@ const loginUser = async (req, res, next) => {
 
     } catch (e) {
         console.log('errorrrr', e)
-        return res.status(500).JSON({
+        return res.status(500).json({
             ok: false,
             msg: `Error en loginUser: ${e}`
         });
@@ -134,5 +219,7 @@ module.exports = {
     showLogin,
     redirectUser,
     logoutUser,
-    renewToken
+    renewToken,
+    showRegister,
+    registerUser
 }

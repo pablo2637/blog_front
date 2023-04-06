@@ -4,7 +4,9 @@ const router = express.Router();
 const {
     loginUser,
     showLogin,
-    logoutUser } = require('../controllers/controllerUser');
+    logoutUser,
+    showRegister,
+    registerUser } = require('../controllers/controllerUser');
 
 const { validateJWT } = require('../middlewares/validarJwt');
 
@@ -20,9 +22,10 @@ router.post('/login', loginUser);
 router.get('/logout', logoutUser);
 
 
-router.get('/register', (req, res) => {
-    res.render('register', { urlTitle: 'Blog: registro' });
-});
+router.get('/register', showRegister);
+
+
+router.post('/register', registerUser);
 
 
 module.exports = router

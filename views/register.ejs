@@ -1,0 +1,41 @@
+<%- include( 'templates/header' ,{urlTitle,user} ) %>
+
+
+<main>
+    <h1 class="h1Admin">Registro</h1>
+
+    <section>
+        <div id="divRegister">
+
+            <form action="../user/register" method="POST">
+
+                <label for="name">Nombre:</label>
+                <input type="text" name="name" id="name" value="<%- user.name %>">
+                <span class="spnErrorReg"><%- error.name %></span>
+
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" value="<%- user.email %>">
+                <span class="spnErrorReg"><%- error.email %></span>
+
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="<%- user.password %>">
+                <span class="spnErrorReg"><%- error.password %></span>
+
+                <label for="passwordR">Repetir Password:</label>
+                <input type="password" name="passwordR" id="passwordR" value="<%- user.passwordR %>">
+                <span class="spnErrorReg"><%- error.passwordR %></span>
+             
+                <div id="btnsLogin">
+                    <button id="btnSubmitRegister" type="submit"><i class="fa-regular fa-address-card"></i> Registrarme</button>                    
+                    <a id="btnCancelarRegister" href="/"><i class="fa-solid fa-person-running"></i> Cancelar</a>
+                </div>
+                
+            </form>
+
+        </div>
+    </section>
+
+</main>
+
+
+    <%- include('templates/footer.ejs') %>
