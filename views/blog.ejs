@@ -2,11 +2,15 @@
 
     <main>
         <h1 class="h1Admin">Entradas</h1>
-        <span><%- msg %></span>
-        <h2><%- user.name %></h2>
+        
+        <div id="divNE">
+            <h2 id="h2Name">Usuario: <%- user.name %></h2>
+        
+            <a id="newEntry" href="/new"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
+        </div>
 
         <section class="secSearch">
-            <form action="/search/" method="POST">
+            <form action="/search" method="POST">
                 <div class="divSearch">
                     <input type="text" name="text" id="txtSearch" placeholder="Escribe aquí...">
                     <span><i class="lupa fa-solid fa-magnifying-glass"></i></span>
@@ -14,11 +18,18 @@
             </form>
         </section>
 
-        <% if (entries.ok) { %>
+        <% if (entries.ok) { %>             
+                   
+            <% if (msg != '') { %>
 
-            <article>
+                <p id="pMsg"><%- msg %></p>            
+                <a id="goBlog" href="/blog">Ver todas</a>
 
-                <% entries.data.forEach(entry=> { %>
+            <% } %>
+            
+            <% entries.data.forEach(entry=> { %>
+
+                <article>
 
                     <div class="divContainer">
                         <p class="title"><%- entry.title %></p>
@@ -32,11 +43,16 @@
                         <a class="readMore" href="/detail/<%- entry.entryid %>">Leer más...</a>
                     </div>
 
-                    <% }) %>
+                </article>
 
-            </article>
+            <% }) %>
+                
+        <% } else { %>
+        
+            <p id="pMsgNoResults"><i class="fa-regular fa-face-sad-cry"></i> <%- msg  %></p>           
+            <a id="goBlog" href="/blog">Ver todas</a>
 
-            <% } %>
+        <% } %>
 
     </main>
 

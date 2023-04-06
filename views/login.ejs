@@ -5,23 +5,25 @@
 
         <section>
             <div id="divLogin">
+
                 <form action="../user/login" method="POST">
-                    <div>
-                        <label for="email">Email:</label>
-                        <input type="text" name="email" id="email" value="<%- user %>">
-                    </div>
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" value="<%- user %>">
 
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
-                    </div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
 
-                    <input id="btnSubmit" type="submit" value="Ingresar">
-                </form>
-
-                <% if (error !='' ) { %>
-                    <p id="loginError"><%- error %></p>
+                    <% if (error !='' ) { %>
+                        <p id="loginError"><%- error %></p>
                     <% } %>
+
+                    <div id="btnsLogin">
+                        <input id="btnSubmitLogin" type="submit" value="Ingresar">
+                        <a id="btnCancelarLogin" href="/">Cancelar</a>
+                    </div>
+                    
+                    <a id="recoverPass" href="">He olvidado la contraseña</a>
+                </form>
 
             </div>
         </section>

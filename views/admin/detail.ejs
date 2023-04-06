@@ -1,12 +1,12 @@
-<%- include( 'templates/header' ,{urlTitle,user} ) %>
+<%- include( 'templates/headerSE' ,{urlTitle} ) %>
 
     <div class="divContainer">
+
         <div class="divDetails">
-        <a id="btnBack" href="/blog"><i class="fa-solid fa-left-long"></i> Volver</a>
+
+            <a id="btnBack" href="javascript:history.back()"><i class="fa-solid fa-left-long"></i> Volver</a>        
+            <a id="btnEdit" href="/admin/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a> 
         
-        <% if (entry.email==user.email) { %>
-            <a id="btnEdit" href="/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>     
-        <% } %>
         </div>
 
         <p class="title"><%- entry.title %></p>

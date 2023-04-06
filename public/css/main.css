@@ -39,7 +39,7 @@ header {
 
 footer {
     background-color: black;
-    display:flex;
+    display: flex;
     vertical-align: middle;
     color: white;
     justify-content: center;
@@ -68,7 +68,7 @@ footer {
     text-align: center;
     text-decoration: none;
     background-color: rgb(0, 0, 0);
-    
+
     box-shadow: 0 0 10px 2px rgb(65, 97, 1);
     color: rgb(255, 255, 255);
     padding: 15px;
@@ -77,8 +77,8 @@ footer {
 }
 
 .divIndex a:hover {
-    color:yellowgreen;
-} 
+    color: yellowgreen;
+}
 
 /* FIN INDEX*************************************** */
 
@@ -93,6 +93,61 @@ footer {
     font-size: 1.5em;
 }
 
+#pMsg {
+    padding: 10px;
+    margin-left: 10px;
+    font-size: 1.6em;
+    color: darkolivegreen;
+    font-style: italic;
+}
+
+#pMsgNoResults {
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5em;
+    color: darkred;
+}
+
+#divNE {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 95%;
+    margin: 15px auto;
+    font-size: 1.2em;
+}
+
+#h2Name {
+    padding: 5px;
+    color: darkslategray;
+}
+
+#newEntry,
+#goBlog {
+    border: 1px solid darkslategray;
+    border-radius: 15px;
+    text-decoration: none;
+    color: darkslategray;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 200px;
+    display: flex;
+    box-shadow: 0 0 5px black;
+    cursor: crosshair;
+    justify-self: right;
+}
+
+#goBlog {
+    text-align: center;
+    margin: 15px auto;
+    cursor: pointer;
+}
+
+#newEntry:hover {
+    background-color: black;
+    color: yellowgreen;
+}
+
 i.lupa {
     color: rgb(255, 255, 255);
     text-shadow: 0 0 3px black;
@@ -101,7 +156,7 @@ i.lupa {
 
 .divContainer {
     width: 90%;
-    margin: 10px auto;
+    margin: 0 auto 15px;
     border-bottom: 1px dotted black;
     padding: 10px;
 }
@@ -109,7 +164,7 @@ i.lupa {
 .secSearch {
     display: block;
     padding: 15px;
-    margin: 15px;
+    margin: 5px auto;
     text-align: center;
     font-size: 1.5em;
 }
@@ -120,7 +175,9 @@ i.lupa {
     border-radius: 10px;
     border: 2px groove black;
     width: 250px;
-    color: darkslategray
+    color: darkslategray;
+
+    font-size: 0.6em;
 }
 
 .divContainer img {
@@ -178,25 +235,113 @@ a.readMore {
     border: 5px solid black;
 }
 
-#divLogin form {    
+#divLogin form {
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
+    grid-template-columns: 0.3fr 0.7fr;
+    text-align: right;
     align-items: center;
+    padding: 15px;
+    background-color: rgb(214, 214, 214);
 }
 
-#divLogin input {    
+#loginError {
+    grid-column: 1 / 3;
+    text-align: center;
+    font-size: 0.9em;
+    font-style: italic;
+    color: red;
+}
+
+#divLogin label {
+    font-size: 1.2em;
+    color: darkolivegreen;
+}
+
+#divLogin input:not([type="submit"]) {
     width: 250px;
     height: 30px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 1px black;
+    text-indent: 5px;
+    color: darkslategray;
+}
 
+#btnsLogin {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#btnSubmitLogin,
+#btnCancelarLogin {
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    height: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: black;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    box-shadow: 0 0 3px darkolivegreen;
+    color: white;
+    font-size: 1em;
+    width: 120px;
+}
+
+#btnSubmitLogin:hover,
+#btnCancelarLogin:hover {
+    color: yellowgreen;
+}
+
+#recoverPass {
+    grid-column: 1 / 3;
+    text-decoration: underline;
+    align-self: last baseline;
+    color: darkcyan;
+    text-align: right;
+    text-indent: 5px;
+    font-size: 1em;
 }
 
 /* FIN LOGIN ***************************************** */
 
 /* DETAIL *********************************************/
+
+.divDetails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
 #btnEdit {
-    float: right;
+    justify-self: right;
+}
+
+#btnBack {
+    justify-self: left;
+}
+
+#btnBack,
+#btnEdit {
+    text-decoration: none;
+    color: darkslategray;
+    border: 1px ridge black;
+    padding: 5px;
+    width: 150px;
+}
+
+p.content {
+    margin: 20px 0;
+    line-height: 25px;
+    text-align: center;
 }
 
 /* FIN DETAIL ******************************************/
@@ -251,7 +396,8 @@ a.readMore {
 
 #image {
     background-color: darkslategray;
-    color: white;
+    color: yellowgreen;
+    text-indent: 5px;
 }
 
 #name,
@@ -289,6 +435,10 @@ a.readMore {
 
 }
 
+#imageFile {
+    color: darkslategray;
+    margin-bottom: 20px;
 
+}
 
 /* FIN EDIT ****************************************** */
