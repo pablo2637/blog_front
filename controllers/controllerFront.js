@@ -91,20 +91,28 @@ const searchEntriesByEmail = async (req, res) => {
 
         const { url, method } = getURLs('getEntriesByEmail', req);
 
-        const { data } = await fetchData(url, method);
+        let { data } = await fetchData(url, method);
 
         if (data.ok) {
 
-            data.data.map(entry => {
-                entry.date = new Date(entry.date).toLocaleDateString();
-                entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
-            })
+            let message = '';
+
+            if (data.data)
+                data.data.map(entry => {
+                    entry.date = new Date(entry.date).toLocaleDateString();
+                    entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+                })
+
+            else {
+                data = [];
+                message='Aún no tienes publicaciones...'
+            }
 
             const user = await getUserDataCookie(req, res);
 
             res.render('blog', {
                 urlTitle: 'Blog: entradas',
-                msg: 'email',
+                msg: message,
                 entries: data,
                 user
             });
@@ -174,9 +182,9 @@ const createEntry = async (req, res) => {
 
         if (req.file != undefined)
             req.body.image = req.file.filename;
-            
+
         else
-            req.body.image = '';     
+            req.body.image = '';
 
         const { url, method } = getURLs('postEntry', req);
         const { data } = await fetchData(url, method, req.body);

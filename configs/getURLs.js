@@ -22,15 +22,15 @@ const getURLs = (tipo, data) => {
 
         //API Entries ***********************
         case 'getEntries':
-            url = `${urlBaseBack}/${urlAPIEntries}?limit=${limit}&page=${page}`;            
+            url = `${urlBaseBack}/${urlAPIEntries}?limit=${limit}&page=${page}`;
             break;
 
         case 'getEntriesBySearch':
-            url = `${urlBaseBack}/${urlAPIEntries}/search/${body.text}?limit=${limit}&page=${page}`;            
+            url = `${urlBaseBack}/${urlAPIEntries}/search/${body.text}?limit=${limit}&page=${page}`;
             break;
 
         case 'getEntriesByEmail':
-            url = `${urlBaseBack}/${urlAPIEntries}/email/${params.email}?limit=${limit}&page=${page}`;            
+            url = `${urlBaseBack}/${urlAPIEntries}/email/${params.email}?limit=${limit}&page=${page}`;
             break;
 
         case 'getEntryByID':
@@ -66,6 +66,11 @@ const getURLs = (tipo, data) => {
 
         case 'getUsers':
             url = `${urlBaseBack}/${urlAPIUser}`;
+            break;
+
+        case 'postUser':
+            url = `${urlBaseBack}/${urlAPIUser}`;
+            method = 'POST';
             break;
 
     };

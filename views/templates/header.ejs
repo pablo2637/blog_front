@@ -19,21 +19,23 @@
         </div>
 
         <div>
-            <nav>
-                <button id='btnMenu'><i  class="fa-solid fa-bars"></i></button>
-                
-                <div id="divMenu">
-                    <% if (user) { %>
-                        <a href="/blog">Buscador</a>
-                        <a href="">Mis publicaciones</a>
-                        <a href="">Cambiar contraseña</a>
-                        <a href="/user/logout">Logout</a>
-                    <% } else { %>
-                        <a href="/user/login">Login</a>
-                        <a href="/user/register">Resgistrarse</a>
-                    <% } %>
-                </div>
-
-            </nav>
+            <button id='btnMenu'><i  class="iBtnMenu fa-solid fa-bars"></i></button>
         </div>
+            
+        <div id="divMenu">
+            <nav id="navContenedor">
+            
+            <% if (user) { %>
+                <a href="/blog">Blog</a>
+                <a href="/email/<%- user.email %>">Mis publicaciones</a>
+                <a href="">Cambiar contraseña</a>
+                <a href="/user/logout">Logout</a>
+            <% } else { %>
+                <a href="/user/login">Login</a>
+                <a href="/user/register">Resgistrarse</a>
+            <% } %>
+        
+            </nav>        
+        </div>
+            
     </header>
