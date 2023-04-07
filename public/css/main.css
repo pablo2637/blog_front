@@ -6,6 +6,12 @@
 
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    min-width: 320px;        
+}
+
+main {
+    max-width: 992px;
+    margin: 0 auto;
 }
 
 header {
@@ -14,13 +20,14 @@ header {
     padding: 20px;
     text-align: right;
     text-indent: 15px;
-
     box-shadow: 0 0 10px rgb(137, 137, 138);
 }
 
 #h1Main {
     text-decoration: none;
     color: white;
+    text-align: left;
+    text-indent: 5px;
 }
 
 .ocultar {
@@ -31,14 +38,21 @@ header {
 /* FOOTER ****************************************** */
 
 footer {
+    margin-top: 40px;
     background-color: black;
     display: flex;
     vertical-align: middle;
     color: white;
     justify-content: center;
     padding: 10px;
-    height: 100px;
+    height: 50px;
     box-shadow: 0 0 10px rgb(137, 137, 138);
+}
+
+#aFooter {
+    text-decoration: none;
+    color: yellowgreen;
+    font-size: 1.2em;
 }
 
 /* FIN FOOTER ************************************** */
@@ -46,27 +60,26 @@ footer {
 /* INDEX ****************************************** */
 
 .divIndex {
-    width: 400px;
-    height: 300px;
+    width: 270px;
+    height: 200px;
+    margin: 100px auto;
     box-shadow: 0 0 10px 5px black;
     border-radius: 20px;
-    margin: 150px auto;
     display: grid;
     align-content: center;
 }
 
 .divIndex a {
+    font-size: 1.2em;
+    width: 180px;
+    padding: 10px;
     display: block;
     margin: 15px auto;
     text-align: center;
     text-decoration: none;
     background-color: rgb(0, 0, 0);
-
     box-shadow: 0 0 10px 2px rgb(65, 97, 1);
     color: rgb(255, 255, 255);
-    padding: 15px;
-    width: 250px;
-    font-size: 2em;
 }
 
 .divIndex a:hover {
@@ -118,15 +131,131 @@ footer {
 
 /* FIN MENU *************************************** */
 
-/* BLOG ****************************************** */
+/* ADMIN ****************************************** */
+
+#tabAdmin {
+    border-collapse: collapse;
+    width: 95%;
+    margin: 15px auto;
+    text-align: center;
+}
+
+
+#tabAdmin thead th:nth-child(1),
+#tabAdmin tbody td:nth-child(1) {
+    font-style: italic;
+    width: 5%;
+}
+
+#tabAdmin thead th:nth-child(2),
+#tabAdmin tbody td:nth-child(2) {
+    width: 15%;
+}
+
+#tabAdmin thead th:nth-child(3),
+#tabAdmin tbody td:nth-child(3) {
+    width: 15%;
+}
+
+#tabAdmin thead th:nth-child(4),
+#tabAdmin tbody td:nth-child(4) {
+    width: 30%;
+    text-align: left;
+    text-indent: 2px;
+}
+
+#tabAdmin thead th:nth-child(4) {
+    text-align: center;
+}
+
+#tabAdmin thead th:nth-child(5),
+#tabAdmin tbody td:nth-child(5) {
+    display: none;
+}
+
+#tabAdmin thead th:nth-child(6),
+#tabAdmin tbody td:nth-child(6) {
+    width: 15%;
+}
+
+#tabAdmin thead th:nth-child(7),
+#tabAdmin tbody td:nth-child(7) {
+    width: 20%;
+}
+
+.tdBtns a,
+.tdBtns button,
+.btnConfirm a,
+.btnConfirm button {
+    border: none;
+    background-color: transparent;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.tdBtns button {
+    color: red;
+}
+
+.btnConfirm {
+    background-color: red;
+    color: white;
+    font-size: 0.9em;
+}
+
+.btnConfirm td {
+    padding: 5px;
+}
+
+.btnConfirm a,
+.btnConfirm button {
+    color: black;
+}
+
+#tabAdmin thead {
+    font-size: 0.9em;
+    color: darkslategray;
+    padding: 5px;
+}
+
+#tabAdmin th {
+    border-bottom: 2px solid black;
+    border-collapse: collapse;
+}
+
+#tabAdmin tbody {
+    font-size: 0.7em;
+    color: darkslategray;
+    padding: 5px;
+}
+
+#tabAdmin tr td {
+    border-bottom: 1px dotted black;
+    border-collapse: collapse;
+}
+
+.imgTable {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    padding: 2px;
+}
+
+
+/* FIN ADMIN*************************************** */
+
+/* BLOG ******************************************* */
 
 .secPages {
+    padding: 5px;
+    font-size: 0.8em;
     background-color: darkslategray;
     color: white;
     text-align: center;
     width: 95%;
     margin: 10px auto;
-    padding: 10px;
     display: grid;
     grid-template-columns: 0.27fr 0.27fr 0.23fr 0.23fr;
     justify-content: space-evenly;
@@ -138,31 +267,51 @@ footer {
 }
 
 .formPages {
-    width: 90%;
-    text-align: right;
-    text-indent: 5px;
+    display: grid;
+    justify-items: right;
+    grid-template-columns: 0.65fr 0.35fr;
+    width: 98%;
+    padding: 3px;
     margin: 10px auto;
+    background-color: rgba(47, 79, 79, 0.2);
 }
 
 .formPages select {
+    font-size: 0.7em;
+    margin-right: 5px;
+    width: 50px;
+    margin: 3px;
+    padding: 3px;
     background-color: rgb(255, 255, 255);
     border: 1px solid black;
     border-radius: 5px;
     color: darkslategray;
-    padding: 5px;
-    width: 80px;
     text-align: left;
-    margin-right: 10px;
     cursor: pointer;
 }
 
+.formPages label {
+    font-size: 0.8em;
+}
+
+.divOpts1,
+.divOpts2 {
+    display: block;
+    grid-column: 1 / 2;
+}
+
 .formPages button {
-    padding: 8px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    height: 25px;
+    justify-self: center;
+    align-self: center;
+    padding: 4px;
+    width: 100px;
+    border-radius: 10px;
     cursor: pointer;
-    width: 120px;
     background-color: white;
     border: 1px solid darkslategray;
-    border-radius: 15px;
     color: darkslategray;
     box-shadow: 0 0 5px black;
 }
@@ -188,7 +337,7 @@ footer {
 
 .pPage {
     display: inline;
-    color:white;
+    color: white;
     font-weight: bold;
 }
 
@@ -207,17 +356,17 @@ footer {
 }
 
 #pMsg {
+    font-size: 1.2em;
     padding: 10px;
     margin-left: 10px;
-    font-size: 1.6em;
-    color: darkolivegreen;
+    color: darkred;
     font-style: italic;
 }
 
 #pMsgNoResults {
+    font-size: 0.9em;
     padding: 10px;
     text-align: center;
-    font-size: 1.5em;
     color: darkred;
 }
 
@@ -230,18 +379,20 @@ footer {
 }
 
 #h2Name {
-    font-size: 1.2em;
-    padding: 5px;    
+    width: 140px;
+    font-size: 0.8em;
+    padding: 5px;
     color: darkslategray;
     border: 1px solid darkslategray;
     box-shadow: 0 0 5px black;
-    width: 200px;
     text-align: center;
     border-radius: 15px;
 }
 
 #newEntry,
 #goBlog {
+    width: 140px;
+    font-size: 0.8em;
     border: 1px solid darkslategray;
     border-radius: 15px;
     text-decoration: none;
@@ -249,7 +400,6 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 5px;
-    width: 200px;
     display: flex;
     box-shadow: 0 0 5px black;
     cursor: crosshair;
@@ -260,9 +410,11 @@ footer {
     text-align: center;
     margin: 15px auto;
     cursor: pointer;
+    width: 200px;
 }
 
-#newEntry:hover {
+#newEntry:hover,
+#goBlog:hover {
     background-color: black;
     color: yellowgreen;
 }
@@ -276,16 +428,16 @@ i.lupa {
 .divContainer {
     width: 90%;
     margin: 0 auto 15px;
-    border-bottom: 1px dotted black;
+    border-bottom: 2px dotted black;
     padding: 10px;
 }
 
 .secSearch {
+    font-size: 1.2em;
     display: block;
     padding: 15px;
     margin: 5px auto;
     text-align: center;
-    font-size: 1.5em;
 }
 
 .secSearch input {
@@ -295,14 +447,12 @@ i.lupa {
     border: 2px groove black;
     width: 250px;
     color: darkslategray;
-
-    font-size: 0.6em;
 }
 
 .divContainer img {
     display: block;
     width: 98%;
-    height: 300px;
+    height: 180px;
     object-fit: contain;
     border: 1px dotted black;
     border-radius: 15px;
@@ -310,7 +460,7 @@ i.lupa {
 }
 
 p.title {
-    font-size: 2.5em;
+    font-size: 1.8em;
     font-weight: bold;
     color: rgb(68, 68, 68);
     padding: 5px 15px;
@@ -330,17 +480,17 @@ a.author {
 }
 
 p.extract {
-    font-size: 1.2em;
+    font-size: 0.9em;
+    color: darkslategray;
     font-style: italic;
-    color: rgb(51, 0, 0);
     padding: 5px 15px;
 }
 
 a.readMore {
-    display: inline;
+    font-size: 0.8em;
     color: red;
     text-decoration: none;
-    padding: 5px 15px;
+    padding: 3px 15px;
 }
 
 /* FIN BLOG ****************************************** */
@@ -348,9 +498,10 @@ a.readMore {
 /* LOGIN ********************************************* */
 
 #divLogin {
-    width: 500px;
-    height: 250px;
-    margin: 50px auto;
+    font-size: 0.8em;
+    width: 300px;
+    margin: 20px auto 40px;
+    height: 210px;
     border: 5px solid black;
 }
 
@@ -361,7 +512,7 @@ a.readMore {
     text-align: right;
     align-items: center;
     padding: 15px;
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(37, 37, 37);
 }
 
 #loginError {
@@ -373,12 +524,13 @@ a.readMore {
 }
 
 #divLogin label {
+    display: block;
     font-size: 1.2em;
-    color: darkolivegreen;
+    color: white;
 }
 
 #divLogin input {
-    width: 250px;
+    width: 170px;
     height: 30px;
     margin: 5px;
     border-radius: 5px;
@@ -396,19 +548,19 @@ a.readMore {
 
 #btnSubmitLogin,
 #btnCancelarLogin {
+    margin: 20px 5px 10px;
+    padding: 5px;
+    font-size: 1em;
+    width: 150px;
     display: inline-block;
     text-align: center;
-    padding: 10px;
-    margin: 30px 5px 10px;
     cursor: pointer;
     text-decoration: none;
     background-color: black;
-    border: 1px solid darkcyan;
+    border: 1px solid darkolivegreen;
     border-radius: 5px;
     box-shadow: 0 0 3px darkolivegreen;
     color: white;
-    font-size: 1em;
-    width: 150px;
 }
 
 #btnSubmitLogin:hover,
@@ -431,30 +583,30 @@ a.readMore {
 /* REGISTER ****************************************** */
 
 #divRegister {
-    width: 500px;
-    height: 360px;
-    margin: 50px auto;
+    width: 320px;
+    height: 300px;
+    margin: 20px auto;
     border: 5px solid black;
 }
 
 #divRegister form {
+    padding: 10px;
     height: 100%;
     display: grid;
     grid-template-columns: 0.4fr 0.6fr;
     text-align: right;
     align-items: center;
-    padding: 15px;
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(37, 37, 37);
 }
 
 #divRegister label {
-    font-size: 1.2em;
-    color: darkolivegreen;
+    font-size: 0.8em;
+    color: white;
 }
 
 #divRegister input {
-    width: 250px;
-    height: 30px;
+    width: 150px;
+    height: 25px;
     margin: 5px;
     border-radius: 5px;
     box-shadow: 0 0 5px 1px black;
@@ -464,10 +616,12 @@ a.readMore {
 
 #btnSubmitRegister,
 #btnCancelarRegister {
+    margin: 20px 5px 10px;
+    padding: 5px;
+    font-size: 0.8em;
+    width: 140px;
     display: inline-block;
     text-align: center;
-    padding: 10px;
-    margin: 30px 5px 10px;
     cursor: pointer;
     text-decoration: none;
     background-color: black;
@@ -475,8 +629,6 @@ a.readMore {
     border-radius: 5px;
     box-shadow: 0 0 3px darkolivegreen;
     color: white;
-    font-size: 1em;
-    width: 160px;
 }
 
 #btnSubmitRegister:hover,
@@ -485,12 +637,11 @@ a.readMore {
 }
 
 .spnErrorReg {
+    font-size: 0.7em;
+    padding: 3px;
     grid-column: 1 / 3;
-    text-align: right;
-    text-indent: 15px;
-    font-size: 0.8em;
+    text-align: center;
     color: red;
-    padding: 5px;
     font-style: italic;
 }
 
@@ -499,12 +650,12 @@ a.readMore {
 /* DETAIL *********************************************/
 
 .divDetails {
+    font-size: 0.9em;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 30px;
     margin-top: 10px;
     text-align: center;
-    font-size: 1.2em;
 }
 
 #btnEdit {
@@ -517,12 +668,19 @@ a.readMore {
 
 #btnBack,
 #btnEdit {
+    width: 100px;
     text-decoration: none;
     color: darkslategray;
     border: 1px ridge black;
     padding: 5px;
-    width: 150px;
 }
+
+#btnBack:hover,
+#btnEdit:hover {
+    color: yellowgreen;
+    background-color: black;
+}
+
 
 p.content {
     margin: 20px 0;
@@ -535,14 +693,14 @@ p.content {
 /* EDIT ********************************************** */
 
 .h1Admin {
-    margin: 10px;
+    font-size: 1.7em;
+    margin: 5px;
     padding: 15px;
-    font-size: 2em;
 }
 
 .divEdit {
+    margin: 20px auto;
     width: 90%;
-    margin: 30px auto;
     padding: 15px;
     background-color: rgb(255, 255, 255);
     border: 1px solid black;
@@ -581,6 +739,7 @@ p.content {
 }
 
 #image {
+    font-size: 0.6em;
     background-color: darkslategray;
     color: yellowgreen;
     text-indent: 5px;
@@ -597,20 +756,20 @@ p.content {
 .btns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 90%;
+    width: 95%;
     justify-content: center;
     margin: 0 auto;
 }
 
 #btnCancelar,
 #btnSubmit {
-    margin: 10px auto;
-    cursor: pointer;
-    font-size: 1.2em;
-    color: black;
-    width: 220px;
-    height: 35px;
+    width: 130px;
+    font-size: 0.7em;
+    height: 25px;
+    margin: 5px auto;
     padding: 5px;
+    cursor: pointer;
+    color: black;
     background-color: rgb(0, 0, 0);
     color: white;
     box-shadow: 0 0 1px 3px rgb(173, 173, 173);
@@ -618,7 +777,6 @@ p.content {
     text-decoration: none;
     border: none;
     border-radius: 15px;
-
 }
 
 #imageFile {
@@ -628,3 +786,286 @@ p.content {
 }
 
 /* FIN EDIT ****************************************** */
+
+/* RESPONSIVE *****************************************/
+
+/* 430 */
+@media screen and (min-width:430px) {
+    .secPages {
+        font-size: 0.9em;
+    }
+}
+
+/* 640 */
+@media screen and (min-width:640px) {
+
+    #tabAdmin thead th:nth-child(1),
+    #tabAdmin tbody td:nth-child(1) {
+        width: 5%;
+    }
+
+    #tabAdmin thead th:nth-child(2),
+    #tabAdmin tbody td:nth-child(2) {
+        width: 10%;
+    }
+
+    #tabAdmin thead th:nth-child(3),
+    #tabAdmin tbody td:nth-child(3) {
+        width: 10%;
+    }
+
+    #tabAdmin thead th:nth-child(4),
+    #tabAdmin tbody td:nth-child(4) {
+        width: 20%;
+    }
+
+    #tabAdmin thead th:nth-child(5),
+    #tabAdmin tbody td:nth-child(5) {
+        display: table-cell;
+        width: 35%;
+    }
+
+    #tabAdmin tbody td:nth-child(5) {
+        text-align: left;
+    }
+
+    #tabAdmin thead th:nth-child(6),
+    #tabAdmin tbody td:nth-child(6) {
+        width: 10%;
+    }
+
+    #tabAdmin thead th:nth-child(7),
+    #tabAdmin tbody td:nth-child(7) {
+        width: 10%;
+    }
+
+    .formPages {
+        grid-template-columns: 0.45fr 0.30fr 0.25fr;
+        justify-items: center;
+    }
+
+    .divOpts1 {
+        grid-column: 1 / 2;
+    }
+
+    .divOpts2 {
+        grid-column: 2 / 3;
+    }
+
+    .formPages button {
+        grid-column: 3 / 4;
+    }
+
+    #btnCancelar,
+    #btnSubmit {
+        width: 170px;
+        font-size: 0.8em;
+        height: 27px;
+    }
+
+    #divLogin {
+        font-size: 0.9em;
+        width: 360px;
+        margin: 20px auto 40px;
+        height: 250px;
+    }
+
+    #loginError {
+        font-size: 1em;
+    }
+
+    #divLogin input {
+        width: 190px;
+        margin: 8px;
+    }
+
+    #divRegister {
+        width: 390px;
+        height: 360px;
+        margin: 20px auto;
+    }
+
+    #divRegister label {
+        font-size: 0.9em;
+    }
+
+    #divRegister input {
+        width: 180px;
+        height: 30px;
+    }
+
+    .spnErrorReg {
+        font-size: 0.8em;
+    }
+
+}
+
+/* 768 */
+@media screen and (min-width:768px) {
+
+    .secPages {
+        font-size: 1em;
+    }
+
+    #tabAdmin thead th:nth-child(1),
+    #tabAdmin tbody td:nth-child(1) {
+        width: 3%;
+    }
+
+    #tabAdmin thead th:nth-child(2),
+    #tabAdmin tbody td:nth-child(2) {
+        width: 10%;
+    }
+
+    #tabAdmin thead th:nth-child(3),
+    #tabAdmin tbody td:nth-child(3) {
+        width: 7%;
+    }
+
+    #tabAdmin thead th:nth-child(4),
+    #tabAdmin tbody td:nth-child(4) {
+        width: 15%;
+    }
+
+    #tabAdmin thead th:nth-child(5),
+    #tabAdmin tbody td:nth-child(5) {
+        width: 35%;
+    }
+
+    #tabAdmin thead th:nth-child(6),
+    #tabAdmin tbody td:nth-child(6) {
+        width: 20%;
+    }
+
+    #tabAdmin thead th:nth-child(7),
+    #tabAdmin tbody td:nth-child(7) {
+        width: 15%;
+    }
+
+    .tdBtns a,
+    .tdBtns button,
+    .btnConfirm a,
+    .btnConfirm button {
+        font-size: 1.5em;
+    }
+
+    .btnConfirm {
+        font-size: 1.1em;
+    }
+
+    #tabAdmin thead {
+        font-size: 1.1em;
+    }
+
+
+}
+
+/* 992 */
+@media screen and (min-width:992px) {
+
+    .divIndex {
+        width: 340px;
+        height: 260px;
+        margin: 130px auto;
+    }
+
+    .divIndex a {
+        font-size: 1.5em;
+        width: 220px;
+        padding: 15px;
+    }
+
+    #divLogin {
+        font-size: 1.1em;
+        width: 420px;
+        margin: 20px auto 50px;
+        height: 290px;
+    }
+
+    #divLogin input {
+        width: 220px;
+        margin: 10px;
+    }
+
+    #h2Name {
+        width: 180px;
+        font-size: 0.9em;
+    }
+
+    #newEntry,
+    #goBlog {
+        width: 180px;
+        font-size: 1em;
+    }
+
+    #goBlog {
+        width: 260px;
+    }
+
+    #pMsgNoResults {
+        font-size: 1.1em;
+    }
+
+    .formPages select {
+        font-size: 0.9em;
+        width: 70px;
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .formPages label {
+        font-size: 1em;
+    }
+
+    #btnCancelar,
+    #btnSubmit {
+        width: 200px;
+        font-size: 1em;
+        height: 30px;
+    }
+
+    #image {
+        font-size: 0.8em;
+    }
+
+    #divRegister {
+        width: 480px;
+        height: 410px;
+        margin: 40px auto;
+    }
+
+    #divRegister label {
+        font-size: 1.1em;
+    }
+
+    #divRegister input {
+        width: 240px;
+        height: 30px;
+    }
+
+    .spnErrorReg {
+        font-size: 0.9em;
+        text-align: right;
+        text-indent: 5px;
+    }
+
+    #btnSubmitRegister,
+    #btnCancelarRegister {
+        font-size: 1em;
+        width: 170px;
+    }
+
+    #tabAdmin thead {
+        font-size: 1.2em;
+    }
+
+    #tabAdmin tbody {
+        font-size: 0.8em;
+    }
+
+}
+
+/* 1280 */
+@media screen and (min-width:1200px) {}
+
+/* FIN RESPONSIVE *************************************/

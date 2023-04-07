@@ -27,34 +27,37 @@
 
 
         <form class="formPages" action="/blog" method="GET">
+            <div class="divOpts1">
+                <label for="limit">Entradas por página:</label>
+                <select name="limit" id="limit">
+                    <% for( let i=1; i < 6; i++ ) { %>
 
-            <label for="limit">Entradas por página:</label>
-            <select name="limit" id="limit">
-                <% for( let i=1; i < 6; i++ ) { %>
-
-                    <% if (entries.limit==(i*10)) { %>
-                        <option value="<%- i*10 %>" selected><%- i*10 %></option>
+                        <% if (entries.limit==(i*10)) { %>
+                            <option value="<%- i*10 %>" selected><%- i*10 %></option>
                         <% } else { %>
                             <option value="<%- i*10 %>"><%- i*10 %></option>
-                            <% } %>
+                        <% } %>
 
-                                <% } %>
-            </select>
+                    <% } %>
+                </select>
+            </div>
 
-            <label for="page">Ir a:</label>
-            <select name="page" id="page">
+            <div class="divOpts2">
+                <label for="page">Ir a Página:</label>
+                <select name="page" id="page">
 
-                <% for( let i=1; i <=entries.totalPages; i++ ) { %>
+                    <% for( let i=1; i <=entries.totalPages; i++ ) { %>
 
-                    <% if (entries.page==i) { %>
-                        <option value="<%- i %>" selected>Página <%- i %></option>
+                        <% if (entries.page==i) { %>
+                            <option value="<%- i %>" selected><%- i %></option>
                         <% } else { %>
-                            <option value="<%- i %>">Página <%- i %></option>
-                            <% } %>
+                            <option value="<%- i %>"><%- i %></option>
+                        <% } %>
 
-                                <% } %>
+                    <% } %>
 
-            </select>
+                </select>
+            </div>
 
             <button type="submit"><i class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
 
@@ -65,7 +68,7 @@
             <% if (msg !='' ) { %>
 
                 <p id="pMsg"><%- msg %></p>
-                <a id="goBlog" href="/blog">Ver todas</a>
+                <a id="goBlog" href="/blog"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
 
             <% } %>
 
@@ -92,18 +95,23 @@
         <% } else { %>
 
             <p id="pMsgNoResults"><i class="fa-regular fa-face-sad-cry"></i> <%- msg %></p>
-            <a id="goBlog" href="/blog">Ver todas</a>
+            <a id="goBlog" href="/blog"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
+
+            <% 
+                entries.page=0;
+                entries.totalPages=0;
+             %>
 
         <% } %>
 
         <div id="divPages">
-            <% if (entries.page !=1) { %>
+            <% if (entries.page > 1) { %>
                 <a href="/blog?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
             <% } else { %>
                 <i class="btnFlecha fa-solid fa-circle-arrow-left"></i>
             <% } %>
 
-            <a href=""><%- entries.page %></a>
+            <p class="pPage"><%- entries.page %></p>      
 
             <% if (entries.totalPages !=entries.page) { %>
                 <a href="/blog?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>

@@ -25,7 +25,7 @@
         <div id="divMenu">
             <nav id="navContenedor">
             
-            <% if (user) { %>
+            <% if (user && !urlTitle.includes('registro')) { %>
                 <a href="/blog">Blog</a>
                 <a href="/email/<%- user.email %>">Mis publicaciones</a>
                 <a href="/user/change">Cambiar password</a>
