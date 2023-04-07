@@ -1,0 +1,125 @@
+<%- include( 'templates/header' ,{urlTitle,user} ) %>
+
+    <main>
+        <h1 class="h1Admin">Entradas</h1>
+
+        <div id="divNE">
+            <h2 id="h2Name">Hola <%- user.name %>!</h2>
+
+            <a id="newEntry" href="/new"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
+        </div>
+
+        <section class="secSearch">
+            <form action="/search" method="POST">
+                <div class="divSearch">
+                    <input type="text" name="text" id="txtSearch" placeholder="Escribe aquí...">
+                    <span><i class="lupa fa-solid fa-magnifying-glass"></i></span>
+                </div>
+            </form>
+        </section>
+
+        <section class="secPages">
+            <p>Total de entradas: <span class="spnPages"><%- entries.totalEntries %></span></p>
+            <p>Entradas por página: <span class="spnPages"><%- entries.limit %></span></p>
+            <p>Total de páginas: <span class="spnPages"><%- entries.totalPages %></span></p>
+            <p>Página actual: <span class="spnPages"><%- entries.page %></span></p>
+        </section>
+
+
+        <form class="formPages" action="/blog" method="GET">
+            <div class="divOpts1">
+                <label for="limit">Entradas por página:</label>
+                <select name="limit" id="limit">
+                    <% for( let i=1; i < 6; i++ ) { %>
+
+                        <% if (entries.limit==(i*10)) { %>
+                            <option value="<%- i*10 %>" selected><%- i*10 %></option>
+                        <% } else { %>
+                            <option value="<%- i*10 %>"><%- i*10 %></option>
+                        <% } %>
+
+                    <% } %>
+                </select>
+            </div>
+
+            <div class="divOpts2">
+                <label for="page">Ir a Página:</label>
+                <select name="page" id="page">
+
+                    <% for( let i=1; i <=entries.totalPages; i++ ) { %>
+
+                        <% if (entries.page==i) { %>
+                            <option value="<%- i %>" selected><%- i %></option>
+                        <% } else { %>
+                            <option value="<%- i %>"><%- i %></option>
+                        <% } %>
+
+                    <% } %>
+
+                </select>
+            </div>
+
+            <button type="submit"><i class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
+
+        </form>
+
+        <% if (entries.ok) { %>
+
+            <% if (msg !='' ) { %>
+
+                <p id="pMsg"><%- msg %></p>
+                <a id="goBlog" href="/blog"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
+
+            <% } %>
+
+                <% entries.data.forEach(entry=> { %>
+
+                    <article>
+
+                        <div class="divContainer">
+                            <p class="title"><%- entry.title %></p>
+
+                            <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+                            <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
+
+                            <img src="/media/<%- entry.image %>" alt="">
+
+                            <p class="extract"><%- entry.extract %></p>
+                            <a class="readMore" href="/detail/<%- entry.entryid %>">Leer más...</a>
+                        </div>
+
+                    </article>
+
+                <% }) %>
+
+        <% } else { %>
+
+            <p id="pMsgNoResults"><i class="fa-regular fa-face-sad-cry"></i> <%- msg %></p>
+            <a id="goBlog" href="/blog"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
+
+            <% 
+                entries.page=0;
+                entries.totalPages=0;
+             %>
+
+        <% } %>
+
+        <div id="divPages">
+            <% if (entries.page > 1) { %>
+                <a href="/blog?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
+            <% } else { %>
+                <i class="btnFlecha fa-solid fa-circle-arrow-left"></i>
+            <% } %>
+
+            <p class="pPage"><%- entries.page %></p>      
+
+            <% if (entries.totalPages !=entries.page) { %>
+                <a href="/blog?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
+            <% } else { %>
+                <i class="btnFlecha fa-solid fa-circle-arrow-right"></i>
+            <% } %>
+        </div>
+
+    </main>
+
+    <%- include('templates/footer.ejs') %>

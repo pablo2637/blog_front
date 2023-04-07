@@ -1,0 +1,23 @@
+<%- include( 'templates/headerSE' ,{urlTitle} ) %>
+
+    <div class="divContainer">
+
+        <div class="divDetails">
+
+            <a id="btnBack" href="javascript:history.back()"><i class="fa-solid fa-left-long"></i> Volver</a>        
+            <a id="btnEdit" href="/admin/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a> 
+        
+        </div>
+
+        <p class="title"><%- entry.title %></p>
+
+        <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+        <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
+
+        <img src="/media/<%- entry.image %>" alt="">
+
+        <p class="content"><%- entry.content %></p>
+        
+    </div>
+
+    <%- include('templates/footerSE.ejs') %>

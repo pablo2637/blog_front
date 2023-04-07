@@ -1,0 +1,34 @@
+<%- include( 'templates/header' ,{urlTitle,user} ) %>
+
+    <main>
+        <h1 class="h1Admin">Login</h1>
+
+        <section>
+            <div id="divLogin">
+
+                <form action="../user/login" method="POST">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" value="<%- user %>">
+
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
+
+                    <% if (error !='' ) { %>
+                        <p id="loginError"><%- error %></p>
+                    <% } %>
+
+                    <div id="btnsLogin">
+                        <button id="btnSubmitLogin" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Ingresar</button>  
+                        <!-- <input id="btnSubmitLogin" type="submit" value="Ingresar"> -->
+                        <a id="btnCancelarLogin" href="/">Cancelar</a>
+                    </div>
+                    
+                    <a id="recoverPass" href="">He olvidado la contraseña</a>
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('templates/footer.ejs') %>

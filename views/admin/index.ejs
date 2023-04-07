@@ -1,0 +1,113 @@
+<%- include( 'templates/header' ,{urlTitle} ) %>
+
+    <main>
+        <h1 class="h1Admin">Administrador</h1>
+
+        <section class="secPages">
+            <p>Total de entradas: <span class="spnPages"><%- entries.totalEntries %></span></p>
+            <p>Entradas por página: <span class="spnPages"><%- entries.limit %></span></p>
+            <p>Total de páginas: <span class="spnPages"><%- entries.totalPages %></span></p>
+            <p>Página actual: <span class="spnPages"><%- entries.page %></span></p>
+        </section>
+
+
+        <form class="formPages" action="/admin" method="GET">
+            <div class="divOpts1">
+                <label for="limit">Entradas por página:</label>
+                <select name="limit" id="limit">
+                    <% for( let i=1; i < 6; i++ ) { %>
+
+                        <% if (entries.limit==(i*10)) { %>
+                            <option value="<%- i*10 %>" selected><%- i*10 %></option>
+                        <% } else { %>
+                            <option value="<%- i*10 %>"><%- i*10 %></option>
+                        <% } %>
+
+                    <% } %>
+                </select>
+            </div>  
+
+            <div class="divOpts2">
+                <label for="page">Ir a Página:</label>
+                <select name="page" id="page">
+
+                    <% for( let i=1; i <=entries.totalPages; i++ ) { %>
+
+                        <% if (entries.page==i) { %>
+                            <option value="<%- i %>" selected><%- i %></option>
+                        <% } else { %>
+                            <option value="<%- i %>"><%- i %></option>
+                        <% } %>
+
+                    <% } %>
+
+                </select>
+            </div>
+
+            <button type="submit"><i class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
+
+        </form>
+
+        <table id="tabAdmin">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Imagen</th>
+                    <th>Autor</th>
+                    <th>Título</th>
+                    <th>Extracto</th>
+                    <th>Fecha</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% entries.data.forEach((entry,ind)=> { %>
+
+                    <tr>
+                        <td><%- ind + 1 + ((entries.page-1) * entries.limit) %></td>
+                        <td><img class="imgTable" src="/media/<%- entry.image %>" alt=""></td>
+                        <td><%- entry.name %></td>
+                        <td><%- entry.title %></td>
+                        <td><%- entry.extract %></td>
+                        <td><%- entry.date %> <%- entry.time %></td>
+                        <td class="tdBtns">
+                            <a title="Ver" href="/admin/detail/<%- entry.entryid %>"><i class="fa-brands fa-readme"></i></a>                                                       
+                            <a title="Editar" href="/admin/edit/<%- entry.entryid %>"><i class="fa-solid fa-pen-to-square"></i></a>                            
+                            <button title="Borrar"><i data-entryid="<%- entry.entryid %>" class="deleteEntry fa-solid fa-eraser"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr class="ocultar btnConfirm" id="tr<%- entry.entryid %>">
+                        <td colspan="7">¿Estás seguro? Se eliminará definitivamente esta entrada.
+                            <a title="Borrar definitivamente" href="/admin/delete/<%- entry.entryid %>"><i class="fa-solid fa-eraser"></i></a>
+                            <button title="Cancelar"><i data-entryid="<%- entry.entryid %>" class="cancelDelete fa-solid fa-rectangle-xmark"></i></button> 
+                        </td>
+                    </tr>
+
+                    <% }) %>
+
+            </tbody>
+
+        </table>
+
+        <div id="divPages">
+            <% if (entries.page !=1) { %>
+                <a href="/admin?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
+            <% } else { %>
+                <i class="btnFlecha fa-solid fa-circle-arrow-left"></i>
+            <% } %>
+             
+            <p class="pPage"><%- entries.page %></p>         
+
+            <% if (entries.totalPages !=entries.page) { %>
+                <a href="/admin?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
+            <% } else { %>
+                <i class="btnFlecha fa-solid fa-circle-arrow-right"></i>
+            <% } %>
+        </div>
+
+    </main>
+
+    <%- include('templates/footer.ejs') %>
