@@ -8,7 +8,9 @@ const {
     showEdit,
     editEntry,
     deleteEntry,
-    getEntryByID } = require('../controllers/controllerAdmin');
+    getEntryByID,
+    changePassword,
+    showChange } = require('../controllers/controllerAdmin');
 
 const { isAdmin } = require('../middlewares/isAdmin');
 
@@ -37,6 +39,16 @@ router.get('/delete/:entryID', [
 router.get('/detail/:entryID', [
     isAdmin
 ], getEntryByID);
+
+
+router.get('/change', [
+    isAdmin
+], showChange);
+
+
+router.post('/changePass', [
+    isAdmin
+], changePassword);
 
 
 module.exports = router

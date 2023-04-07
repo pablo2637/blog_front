@@ -2,10 +2,10 @@
 
     <main>
         <h1 class="h1Admin">Entradas</h1>
-        
+
         <div id="divNE">
-            <h2 id="h2Name">Usuario: <%- user.name %></h2>
-        
+            <h2 id="h2Name">Hola <%- user.name %>!</h2>
+
             <a id="newEntry" href="/new"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
         </div>
 
@@ -18,41 +18,99 @@
             </form>
         </section>
 
-        <% if (entries.ok) { %>             
-                   
-            <% if (msg != '') { %>
+        <section class="secPages">
+            <p>Total de entradas: <span class="spnPages"><%- entries.totalEntries %></span></p>
+            <p>Entradas por página: <span class="spnPages"><%- entries.limit %></span></p>
+            <p>Total de páginas: <span class="spnPages"><%- entries.totalPages %></span></p>
+            <p>Página actual: <span class="spnPages"><%- entries.page %></span></p>
+        </section>
 
-                <p id="pMsg"><%- msg %></p>            
+
+        <form class="formPages" action="/blog" method="GET">
+
+            <label for="limit">Entradas por página:</label>
+            <select name="limit" id="limit">
+                <% for( let i=1; i < 6; i++ ) { %>
+
+                    <% if (entries.limit==(i*10)) { %>
+                        <option value="<%- i*10 %>" selected><%- i*10 %></option>
+                        <% } else { %>
+                            <option value="<%- i*10 %>"><%- i*10 %></option>
+                            <% } %>
+
+                                <% } %>
+            </select>
+
+            <label for="page">Ir a:</label>
+            <select name="page" id="page">
+
+                <% for( let i=1; i <=entries.totalPages; i++ ) { %>
+
+                    <% if (entries.page==i) { %>
+                        <option value="<%- i %>" selected>Página <%- i %></option>
+                        <% } else { %>
+                            <option value="<%- i %>">Página <%- i %></option>
+                            <% } %>
+
+                                <% } %>
+
+            </select>
+
+            <button type="submit"><i class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
+
+        </form>
+
+        <% if (entries.ok) { %>
+
+            <% if (msg !='' ) { %>
+
+                <p id="pMsg"><%- msg %></p>
                 <a id="goBlog" href="/blog">Ver todas</a>
 
             <% } %>
-            
-            <% entries.data.forEach(entry=> { %>
 
-                <article>
+                <% entries.data.forEach(entry=> { %>
 
-                    <div class="divContainer">
-                        <p class="title"><%- entry.title %></p>
+                    <article>
 
-                        <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
-                        <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
+                        <div class="divContainer">
+                            <p class="title"><%- entry.title %></p>
 
-                        <img src="/media/<%- entry.image %>" alt="">
+                            <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+                            <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
 
-                        <p class="extract"><%- entry.extract %></p>
-                        <a class="readMore" href="/detail/<%- entry.entryid %>">Leer más...</a>
-                    </div>
+                            <img src="/media/<%- entry.image %>" alt="">
 
-                </article>
+                            <p class="extract"><%- entry.extract %></p>
+                            <a class="readMore" href="/detail/<%- entry.entryid %>">Leer más...</a>
+                        </div>
 
-            <% }) %>
-                
+                    </article>
+
+                <% }) %>
+
         <% } else { %>
-        
-            <p id="pMsgNoResults"><i class="fa-regular fa-face-sad-cry"></i> <%- msg  %></p>           
+
+            <p id="pMsgNoResults"><i class="fa-regular fa-face-sad-cry"></i> <%- msg %></p>
             <a id="goBlog" href="/blog">Ver todas</a>
 
         <% } %>
+
+        <div id="divPages">
+            <% if (entries.page !=1) { %>
+                <a href="/blog?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
+            <% } else { %>
+                <i class="btnFlecha fa-solid fa-circle-arrow-left"></i>
+            <% } %>
+
+            <a href=""><%- entries.page %></a>
+
+            <% if (entries.totalPages !=entries.page) { %>
+                <a href="/blog?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
+            <% } else { %>
+                <i class="btnFlecha fa-solid fa-circle-arrow-right"></i>
+            <% } %>
+        </div>
 
     </main>
 

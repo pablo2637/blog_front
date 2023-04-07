@@ -37,7 +37,9 @@ router.get('/change', [
 ], showChange);
 
 
-router.post('/changePass',changePassword);
+router.post('/changePass', [
+    isNotAdmin
+], changePassword);
 
 
 module.exports = router
