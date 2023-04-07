@@ -5,19 +5,22 @@ const { renewToken } = require('../helpers/jwt');
 
 const isAdmin = async (req, res, next) => {
 
-    const response = await renewToken(req, res);
+    try {
 
-    if (!response.ok)
-        res.redirect('/login');
 
-    else {
+        await renewToken(req, res);
 
         const user = await getUserDataCookie(req, res);
 
         if (user.rol != 'admin')
             res.redirect('/blog');
+
         else
             next();
+
+    } catch (e) {
+        res.redirect('user/login');
+
     }
 
 };
@@ -25,19 +28,21 @@ const isAdmin = async (req, res, next) => {
 
 const isNotAdmin = async (req, res, next) => {
 
-    const response = await renewToken(req, res);
+    try {
 
-    if (!response.ok)
-        res.redirect('/');
-
-    else {
+        await renewToken(req, res);
 
         const user = await getUserDataCookie(req, res);
 
         if (user.rol != 'user')
             res.redirect('/admin');
+
         else
             next();
+
+    } catch (e) {
+        res.redirect('user/login');
+
     }
 
 };
