@@ -3,21 +3,25 @@ const router = express.Router();
 
 const {
     loginUser,
-    showLogin,
     logoutUser,
     showRegister,
     registerUser,
     showChange,
-    changePassword } = require('../controllers/controllerUser');
+    redirectUser,
+    changePassword,
+    showLogin } = require('../controllers/controllerUser');
 
 const { validateJWT } = require('../middlewares/validarJwt');
 
 const { isNotAdmin } = require('../middlewares/isAdmin');
 
 
-router.get('/login', [
+router.get('/verify', [
     validateJWT
-], showLogin);
+], redirectUser);
+
+
+router.get('/login', showLogin);
 
 
 router.post('/login', loginUser);
@@ -32,12 +36,12 @@ router.get('/register', showRegister);
 router.post('/register', registerUser);
 
 
-router.get('/change', [
+router.get('/change', [    
     isNotAdmin
 ], showChange);
 
 
-router.post('/changePass', [
+router.post('/changePass', [    
     isNotAdmin
 ], changePassword);
 

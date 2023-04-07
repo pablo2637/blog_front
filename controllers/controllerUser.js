@@ -116,7 +116,7 @@ const loginUser = async (req, res, next) => {
         const { url, method } = getURLs('loginUser', req);
 
         const { data } = await fetchData(url, method, req.body);
-
+        console.log('data',data)
         if (data.ok) {
             const user = data.user;
             user.email = req.body.email;
@@ -186,8 +186,7 @@ const logoutUser = async (req, res) => {
 
 const redirectUser = async (req, res) => {
 
-    const { rol } = await getUserDataCookie(req, res);
-    console.log('rol', rol)
+    const { rol } = await getUserDataCookie(req, res);    
 
     if (rol == 'admin')
         res.redirect('/admin');
@@ -195,22 +194,6 @@ const redirectUser = async (req, res) => {
     else
         res.redirect('/blog');
 
-};
-
-
-const renewToken = async (req, res) => {
-
-    const user = await getUserTokenCookie(req, res);
-
-    const token = await generateJwt(user.id, user.name);
-
-    await setUserToken(req, res, token);
-
-    return res.status(200).json({
-        ok: true,
-        msg: 'getRenew: renovación del token correcta.',
-        token
-    });
 };
 
 
@@ -288,7 +271,6 @@ module.exports = {
     showLogin,
     redirectUser,
     logoutUser,
-    renewToken,
     showRegister,
     registerUser,
     showChange,

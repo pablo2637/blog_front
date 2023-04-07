@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
+
 const { getUserTokenCookie, setUserCookie, clearCookies } = require('../helpers/cookies');
-const { redirectUser } = require('../controllers/controllerUser');
 
 
 const validateJWT = async (req, res, next) => {
@@ -22,16 +22,17 @@ const validateJWT = async (req, res, next) => {
 
             await setUserCookie(req, res, user);
 
-            redirectUser(req, res);
+            next();
 
         } catch (e) {
-            clearCookies(req,res);
-            next();
+            console.log('validateJWT', e)
+            clearCookies(req, res);
+            res.redirect('/user/login');
 
         };
 
     } else
-        next();
+        res.redirect('/user/login');
 
 }
 

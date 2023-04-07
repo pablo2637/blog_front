@@ -1,35 +1,44 @@
 const { getUserDataCookie } = require('../helpers/cookies');
 
+const { renewToken } = require('../helpers/jwt');
+
 
 const isAdmin = async (req, res, next) => {
 
-    const user = await getUserDataCookie(req, res);
+    const response = await renewToken(req, res);
 
-    if (user) {
+    if (!response.ok)
+        res.redirect('/login');
 
-        if (user.rol == 'admin')
-            next();
-            
-        else
+    else {
+
+        const user = await getUserDataCookie(req, res);
+
+        if (user.rol != 'admin')
             res.redirect('/blog');
-
-    } else res.redirect('/');
+        else
+            next();
+    }
 
 };
 
 
 const isNotAdmin = async (req, res, next) => {
 
-    const user = await getUserDataCookie(req, res);
+    const response = await renewToken(req, res);
 
-    if (user) {
+    if (!response.ok)
+        res.redirect('/');
 
-        if (user.rol == 'user')
-            next();
-        else
+    else {
+
+        const user = await getUserDataCookie(req, res);
+
+        if (user.rol != 'user')
             res.redirect('/admin');
-
-    } else res.redirect('/');
+        else
+            next();
+    }
 
 };
 

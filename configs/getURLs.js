@@ -1,5 +1,5 @@
-const urlBase = process.env.URL_BASE;
-const urlBaseBack = process.env.URL_BASE_BACK;
+// const urlBaseBack = process.env.URL_BASE_BACK;
+const urlBaseBack = 'https://blog-back-91me.onrender.com';
 const urlAPIEntries = 'api/entries';
 const urlAPIUser = 'api/users';
 
