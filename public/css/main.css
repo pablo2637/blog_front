@@ -112,13 +112,89 @@ footer {
 
 #navContenedor a:hover {
     background-color: yellowgreen;
-    color:black;
+    color: black;
 }
 
 
 /* FIN MENU *************************************** */
 
 /* BLOG ****************************************** */
+
+.secPages {
+    background-color: darkslategray;
+    color: white;
+    text-align: center;
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 0.27fr 0.27fr 0.23fr 0.23fr;
+    justify-content: space-evenly;
+}
+
+.spnPages {
+    color: yellowgreen;
+    font-weight: bold;
+}
+
+.formPages {
+    width: 90%;
+    text-align: right;
+    text-indent: 5px;
+    margin: 10px auto;
+}
+
+.formPages select {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: darkslategray;
+    padding: 5px;
+    width: 80px;
+    text-align: left;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.formPages button {
+    padding: 8px;
+    cursor: pointer;
+    width: 120px;
+    background-color: white;
+    border: 1px solid darkslategray;
+    border-radius: 15px;
+    color: darkslategray;
+    box-shadow: 0 0 5px black;
+}
+
+.formPages button:hover {
+    background-color: black;
+    color: yellowgreen;
+}
+
+#divPages {
+    width: 95%;
+    margin: 15px auto;
+    background-color: darkslategray;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+#divPages a {
+    color: white;
+    text-decoration: none;
+}
+
+.pPage {
+    display: inline;
+    color:white;
+    font-weight: bold;
+}
+
+.btnFlecha {
+    color: darkcyan;
+}
 
 .divSearch {
     display: flex;
@@ -154,8 +230,14 @@ footer {
 }
 
 #h2Name {
-    padding: 5px;
+    font-size: 1.2em;
+    padding: 5px;    
     color: darkslategray;
+    border: 1px solid darkslategray;
+    box-shadow: 0 0 5px black;
+    width: 200px;
+    text-align: center;
+    border-radius: 15px;
 }
 
 #newEntry,
@@ -316,7 +398,7 @@ a.readMore {
 #btnCancelarLogin {
     display: inline-block;
     text-align: center;
-    padding: 10px;    
+    padding: 10px;
     margin: 30px 5px 10px;
     cursor: pointer;
     text-decoration: none;
