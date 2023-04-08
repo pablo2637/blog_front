@@ -98,7 +98,7 @@ const registerUser = async (req, res, next) => {
 
 
     } catch (e) {
-        console.log('errorrrr', e)
+       
         return res.status(500).json({
             ok: false,
             msg: `Error en registerUser: ${e}`
@@ -116,8 +116,9 @@ const loginUser = async (req, res, next) => {
         const { url, method } = getURLs('loginUser', req);
 
         const { data } = await fetchData(url, method, req.body);
-        console.log('data',data)
+        
         if (data.ok) {
+            
             const user = data.user;
             user.email = req.body.email;
 
@@ -149,7 +150,7 @@ const loginUser = async (req, res, next) => {
 
 
     } catch (e) {
-        console.log('errorrrr', e)
+       
         return res.status(500).json({
             ok: false,
             msg: `Error en loginUser: ${e}`
@@ -256,7 +257,7 @@ const changePassword = async (req, res, next) => {
 
 
     } catch (e) {
-        console.log('errorrrr', e)
+      
         return res.status(500).json({
             ok: false,
             msg: `Error en changePassword: ${e}`

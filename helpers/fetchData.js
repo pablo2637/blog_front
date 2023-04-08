@@ -12,7 +12,7 @@ const fetchData = async (url, method, body) => {
         };
     else if (method == 'DELETE') options = { method };
 
-    console.log('fetchData: url', url, 'body', body, 'options', options);
+    //console.log('fetchData: url', url, 'body', body, 'options', options);
 
 
     try {
@@ -32,7 +32,7 @@ const fetchData = async (url, method, body) => {
         };
 
     } catch (e) {
-        console.log('error fetchData', e)
+       
         return {
             ok: false,
             error: e

@@ -7,8 +7,6 @@ const limitePorDefecto = 10;
 
 const getURLs = (tipo, data) => {
 
-    console.log('aaaa',urlBaseBack)
-
     const body = data.body;
     const params = data.params;
     const query = data.query;
@@ -18,7 +16,7 @@ const getURLs = (tipo, data) => {
 
     let url, method;
 
-    console.log('getURLs: tipo', tipo, 'query', query, 'params', params);
+    //console.log('getURLs: tipo', tipo, 'query', query, 'params', params);
 
     switch (tipo) {
 

@@ -30,7 +30,7 @@ const getEntries = async (req, res) => {
         }
 
     } catch (e) {
-        console.log('errrorr', e)
+       
         res.status(500).send({
             urlTitle: 'Blog: entradas',
             msg: `Error en getEntries: ${e}`
@@ -266,7 +266,7 @@ const showEdit = async (req, res) => {
         }
 
     } catch (e) {
-        console.log('errrorr', e)
+        
         res.status(500).send({
             urlTitle: 'Blog:  editar',
             msg: `Error en showEdit: ${e}`

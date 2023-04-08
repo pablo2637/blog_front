@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', ev => {
 
         if (ev.target.matches('i')) {
-            console.log('click', ev.target)
+            //console.log('click', ev.target)
 
             if (ev.target.classList.contains('iBtnMenu'))
                 divMenu.classList.toggle('mostrarNav');
@@ -33,12 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     };
 
-
-    const init = () => {
-        // divMenu.classList.toggle('mostrarNav');
-    };
-
-
-    init();
 
 }); //Load
