@@ -7,8 +7,6 @@ port = process.env.PORT;
 
 const cookieParser = require('cookie-parser');
 
-app.use(cookieParser());                            //Cookies
-
 app.use(cors());                                    //Cors
 app.use(express.static(__dirname + '/public'));     //Carpeta static
 
@@ -17,6 +15,8 @@ app.set('views', __dirname + '/views');
 
 app.use(express.urlencoded({ extended: false }));   // Parse application/x-www-form-urlencoded
 app.use(express.json());                            // Parse application/json
+
+app.use(cookieParser());                            //Cookies
 
 
 //Rutas

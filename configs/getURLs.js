@@ -1,11 +1,13 @@
-// const urlBaseBack = process.env.URL_BASE_BACK;
-const urlBaseBack = 'https://blog-back-91me.onrender.com';
+const urlBaseBack = process.env.URL_BASE_BACK;
 const urlAPIEntries = 'api/entries';
 const urlAPIUser = 'api/users';
 
 const limitePorDefecto = 10;
 
+
 const getURLs = (tipo, data) => {
+
+    console.log('aaaa',urlBaseBack)
 
     const body = data.body;
     const params = data.params;
