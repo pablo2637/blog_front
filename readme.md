@@ -93,8 +93,7 @@ Aquí encontraremos las mismas opciones de paginación que en la vista de admini
 ---
 ##.env:
 ####Requiere:
-El puerto del servidor: **PORT**=3005
-La ruta del back end: **URL_BASE_BACK**=https://blog-back-91me.onrender.com
+* El puerto del servidor: **PORT**=3005
+* La ruta del back end: **URL_BASE_BACK**=https://blog-back-91me.onrender.com
 *(esta subida a render, por lo que la primera conexión es un poco lenta, se puede utilizar la ruta alternativa: **URL_BASE_BACK**=http://localhost:3000)*
-La frase secreta: **JWT_SECRET_KEY**=frase_de_prueba
-    
+* La frase secreta: **JWT_SECRET_KEY**=frase_de_prueba    
