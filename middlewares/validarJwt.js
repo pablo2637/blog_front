@@ -25,7 +25,7 @@ const validateJWT = async (req, res, next) => {
             next();
 
         } catch (e) {
-            console.log('validateJWT', e)
+           
             clearCookies(req, res);
             res.redirect('/user/login');
 

@@ -29,7 +29,7 @@ const showAdmin = async (req, res) => {
         }
 
     } catch (e) {
-        console.log('errrorr', e)
+        
         res.status(500).send({
             urlTitle: 'Blog: Administrador: entradas',
             msg: `Error en showAdmin: ${e}`,
@@ -63,7 +63,7 @@ const showEdit = async (req, res) => {
         }
 
     } catch (e) {
-        console.log('errrorr', e)
+        
         res.status(500).send({
             urlTitle: 'Blog: Administrador: editar',
             msg: `Error en showEdit: ${e}`
@@ -197,7 +197,7 @@ const deleteEntry = async (req, res) => {
                 await fs.unlink(`./public/media/${imageDelete}`);
 
             } catch (error) {
-                console.log('error borrando DeleteEntry', error);
+                
             }
 
             res.redirect('/admin');
@@ -205,7 +205,7 @@ const deleteEntry = async (req, res) => {
         }
 
     } catch (e) {
-        console.log('errrorr', e)
+        
         res.status(500).send({
             urlTitle: 'Blog: Administrador: entradas',
             msg: `Error en deleteEntry: ${e}`,
@@ -275,7 +275,7 @@ const changePassword = async (req, res, next) => {
 
 
     } catch (e) {
-        console.log('errorrrr', e)
+        
         return res.status(500).json({
             ok: false,
             msg: `Error en changePassword: ${e}`
