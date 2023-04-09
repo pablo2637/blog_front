@@ -72,6 +72,8 @@
 
             <% } %>
 
+            <% if (entries.data) { %>
+
                 <% entries.data.forEach(entry=> { %>
 
                     <article>
@@ -91,6 +93,12 @@
                     </article>
 
                 <% }) %>
+            
+            <% } else { %>            
+                
+                <p id="tdNoResults" >Aún no hay entradas en la base de datos...</p>                
+                        
+            <% } %>
 
         <% } else { %>
 

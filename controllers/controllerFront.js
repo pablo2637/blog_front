@@ -13,11 +13,12 @@ const getEntries = async (req, res) => {
         const { data } = await fetchData(url, method);
 
         if (data.ok) {
-
-            data.data.map(entry => {
-                entry.date = new Date(entry.date).toLocaleDateString();
-                entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
-            });
+            
+            if (!data.msg.includes('No hay'))
+                data.data.map(entry => {
+                    entry.date = new Date(entry.date).toLocaleDateString();
+                    entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+                });
 
             const user = await getUserDataCookie(req, res);
 
@@ -30,7 +31,7 @@ const getEntries = async (req, res) => {
         }
 
     } catch (e) {
-       
+
         res.status(500).send({
             urlTitle: 'Blog: entradas',
             msg: `Error en getEntries: ${e}`
@@ -105,7 +106,7 @@ const searchEntriesByEmail = async (req, res) => {
 
             else {
                 data = [];
-                message='Aún no tienes publicaciones...'
+                message = 'Aún no tienes publicaciones...'
             }
 
             const user = await getUserDataCookie(req, res);
@@ -266,7 +267,7 @@ const showEdit = async (req, res) => {
         }
 
     } catch (e) {
-        
+
         res.status(500).send({
             urlTitle: 'Blog:  editar',
             msg: `Error en showEdit: ${e}`
