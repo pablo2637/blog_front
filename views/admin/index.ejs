@@ -63,30 +63,40 @@
 
             <tbody>
 
-                <% entries.data.forEach((entry,ind)=> { %>
+                <% if (entries.data) { %>
+                                 
+                    <% entries.data.forEach((entry,ind)=> { %>
 
-                    <tr>
-                        <td><%- ind + 1 + ((entries.page-1) * entries.limit) %></td>
-                        <td><img class="imgTable" src="/media/<%- entry.image %>" alt=""></td>
-                        <td><%- entry.name %></td>
-                        <td><%- entry.title %></td>
-                        <td><%- entry.extract %></td>
-                        <td><%- entry.date %> <%- entry.time %></td>
-                        <td class="tdBtns">
-                            <a title="Ver" href="/admin/detail/<%- entry.entryid %>"><i class="fa-brands fa-readme"></i></a>                                                       
-                            <a title="Editar" href="/admin/edit/<%- entry.entryid %>"><i class="fa-solid fa-pen-to-square"></i></a>                            
-                            <button title="Borrar"><i data-entryid="<%- entry.entryid %>" class="deleteEntry fa-solid fa-eraser"></i></button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td><%- ind + 1 + ((entries.page-1) * entries.limit) %></td>
+                            <td><img class="imgTable" src="/media/<%- entry.image %>" alt=""></td>
+                            <td><%- entry.name %></td>
+                            <td><%- entry.title %></td>
+                            <td><%- entry.extract %></td>
+                            <td><%- entry.date %> <%- entry.time %></td>
+                            <td class="tdBtns">
+                                <a title="Ver" href="/admin/detail/<%- entry.entryid %>"><i class="fa-brands fa-readme"></i></a>                                                       
+                                <a title="Editar" href="/admin/edit/<%- entry.entryid %>"><i class="fa-solid fa-pen-to-square"></i></a>                            
+                                <button title="Borrar"><i data-entryid="<%- entry.entryid %>" class="deleteEntry fa-solid fa-eraser"></i></button>
+                            </td>
+                        </tr>
 
-                    <tr class="ocultar btnConfirm" id="tr<%- entry.entryid %>">
-                        <td colspan="7">¿Estás seguro? Se eliminará definitivamente esta entrada.
-                            <a title="Borrar definitivamente" href="/admin/delete/<%- entry.entryid %>"><i class="fa-solid fa-eraser"></i></a>
-                            <button title="Cancelar"><i data-entryid="<%- entry.entryid %>" class="cancelDelete fa-solid fa-rectangle-xmark"></i></button> 
-                        </td>
-                    </tr>
+                        <tr class="ocultar btnConfirm" id="tr<%- entry.entryid %>">
+                            <td colspan="7">¿Estás seguro? Se eliminará definitivamente esta entrada.
+                                <a title="Borrar definitivamente" href="/admin/delete/<%- entry.entryid %>"><i class="fa-solid fa-eraser"></i></a>
+                                <button title="Cancelar"><i data-entryid="<%- entry.entryid %>" class="cancelDelete fa-solid fa-rectangle-xmark"></i></button> 
+                            </td>
+                        </tr>
 
                     <% }) %>
+
+                <% } else { %>
+                     
+                    <tr>
+                        <td id="tdNoResults" colspan="7">Aún no hay entradas en la base de datos...</td>
+                    </tr>
+
+                <% } %>
 
             </tbody>
 

@@ -15,10 +15,11 @@ const showAdmin = async (req, res) => {
 
         if (data.ok) {
 
-            data.data.map(entry => {
-                entry.date = new Date(entry.date).toLocaleDateString();
-                entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
-            });
+            if (!data.msg.includes('No hay'))
+                data.data.map(entry => {
+                    entry.date = new Date(entry.date).toLocaleDateString();
+                    entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+                });
 
             res.render('admin/index', {
                 urlTitle: 'Blog: Administrador: entradas',
@@ -29,7 +30,7 @@ const showAdmin = async (req, res) => {
         }
 
     } catch (e) {
-        
+
         res.status(500).send({
             urlTitle: 'Blog: Administrador: entradas',
             msg: `Error en showAdmin: ${e}`,
@@ -63,7 +64,7 @@ const showEdit = async (req, res) => {
         }
 
     } catch (e) {
-        
+
         res.status(500).send({
             urlTitle: 'Blog: Administrador: editar',
             msg: `Error en showEdit: ${e}`
@@ -197,7 +198,7 @@ const deleteEntry = async (req, res) => {
                 await fs.unlink(`./public/media/${imageDelete}`);
 
             } catch (error) {
-                
+
             }
 
             res.redirect('/admin');
@@ -205,7 +206,7 @@ const deleteEntry = async (req, res) => {
         }
 
     } catch (e) {
-        
+
         res.status(500).send({
             urlTitle: 'Blog: Administrador: entradas',
             msg: `Error en deleteEntry: ${e}`,
@@ -275,7 +276,7 @@ const changePassword = async (req, res, next) => {
 
 
     } catch (e) {
-        
+
         return res.status(500).json({
             ok: false,
             msg: `Error en changePassword: ${e}`

@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    min-width: 320px;        
+    min-width: 320px;
 }
 
 main {
@@ -34,7 +34,7 @@ header {
     display: none;
 }
 
-#e404 {    
+#e404 {
     width: 90%;
     margin: 50px auto;
     padding: 20px;
@@ -146,6 +146,14 @@ footer {
     border-collapse: collapse;
     width: 95%;
     margin: 15px auto;
+    text-align: center;
+}
+
+#tdNoResults {
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 15px;
+    color: darkred;
     text-align: center;
 }
 
@@ -460,12 +468,14 @@ i.lupa {
 
 .divContainer img {
     display: block;
-    width: 98%;
+    /* width: 98%; */
     height: 180px;
     object-fit: contain;
-    border: 1px dotted black;
+    /* border: 1px dotted black; */
     border-radius: 15px;
     margin: 10px auto;
+    
+    box-shadow: 0 0 5px;
 }
 
 p.title {
@@ -697,6 +707,12 @@ p.content {
     text-align: center;
 }
 
+#imgDetail {
+    height: 300px;
+    width: 280px;
+    object-fit: contain;
+}
+
 /* FIN DETAIL ******************************************/
 
 /* EDIT ********************************************** */
@@ -803,6 +819,11 @@ p.content {
     .secPages {
         font-size: 0.9em;
     }
+
+    #imgDetail {
+        height: 300px;
+        width: 350px;
+    }
 }
 
 /* 640 */
@@ -907,6 +928,11 @@ p.content {
         font-size: 0.8em;
     }
 
+    #imgDetail {
+        height: 330px;
+        width: 440px;
+    }
+
 }
 
 /* 768 */
@@ -966,6 +992,10 @@ p.content {
         font-size: 1.1em;
     }
 
+    #imgDetail {
+        height: 410px;
+        width: 550px;
+    }
 
 }
 
@@ -1070,6 +1100,11 @@ p.content {
 
     #tabAdmin tbody {
         font-size: 0.8em;
+    }
+
+    #imgDetail {
+        height: 500px;
+        width: 780px;
     }
 
 }
