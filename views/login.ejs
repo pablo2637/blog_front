@@ -7,11 +7,11 @@
             <div id="divLogin">
 
                 <form action="../user/login" method="POST">
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" id="email" value="<%- user %>">
+                    <label for="email">Email:</label> 
+                    <input type="text" name="email" id="email" value="<%- user %>"a utocomplete="off">
 
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" autocomplete="off">
 
                     <% if (error !='' ) { %>
                         <p id="loginError"><%- error %></p>
@@ -19,7 +19,7 @@
 
                     <div id="btnsLogin">
                         <button id="btnSubmitLogin" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Ingresar</button>  
-                        <!-- <input id="btnSubmitLogin" type="submit" value="Ingresar"> -->
+                        
                         <a id="btnCancelarLogin" href="/">Cancelar</a>
                     </div>
                     
