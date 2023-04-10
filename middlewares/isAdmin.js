@@ -19,7 +19,7 @@ const isAdmin = async (req, res, next) => {
             next();
 
     } catch (e) {
-        res.redirect('user/login');
+        res.redirect('/user/login');
 
     }
 
@@ -41,7 +41,7 @@ const isNotAdmin = async (req, res, next) => {
             next();
 
     } catch (e) {
-        res.redirect('user/login');
+        res.redirect('/user/login');
 
     }
 

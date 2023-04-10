@@ -13,7 +13,7 @@ const getEntries = async (req, res) => {
         const { data } = await fetchData(url, method);
 
         if (data.ok) {
-            
+
             if (!data.msg.includes('No hay'))
                 data.data.map(entry => {
                     entry.date = new Date(entry.date).toLocaleDateString();
@@ -322,9 +322,11 @@ const editEntry = async (req, res) => {
                 if (e.image)
                     err.image = e.image.msg;
 
+                const user = await getUserDataCookie(req, res);
                 res.render('edit', {
                     entry: req.body,
                     msg: err,
+                    user,
                     urlTitle: 'Blog: editar'
                 });
 
