@@ -16,8 +16,6 @@ const getURLs = (tipo, data) => {
 
     let url, method;
 
-    //console.log('getURLs: tipo', tipo, 'query', query, 'params', params);
-
     switch (tipo) {
 
         //API Entries ***********************
@@ -82,7 +80,7 @@ const getURLs = (tipo, data) => {
     };
 
     return { url, method };
-}
+};
 
 
 module.exports = { getURLs }

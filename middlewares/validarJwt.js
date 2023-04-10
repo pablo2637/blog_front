@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const { getUserTokenCookie, setUserCookie, clearCookies } = require('../helpers/cookies');
+const {
+    getUserTokenCookie,
+    setUserCookie,
+    clearCookies } = require('../helpers/cookies');
 
 
 const validateJWT = async (req, res, next) => {
@@ -8,7 +11,6 @@ const validateJWT = async (req, res, next) => {
     const token = await getUserTokenCookie(req, res);
 
     if (token) {
-
         try {
 
             const payload = jwt.verify(token, process.env.JWT_SECRET_KEY);
@@ -25,7 +27,7 @@ const validateJWT = async (req, res, next) => {
             next();
 
         } catch (e) {
-           
+
             clearCookies(req, res);
             res.redirect('/user/login');
 
@@ -34,7 +36,7 @@ const validateJWT = async (req, res, next) => {
     } else
         res.redirect('/user/login');
 
-}
+};
 
 
 module.exports = { validateJWT };

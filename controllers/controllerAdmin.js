@@ -36,7 +36,7 @@ const showAdmin = async (req, res) => {
             msg: `Error en showAdmin: ${e}`,
         });
 
-    }
+    };
 };
 
 
@@ -70,7 +70,7 @@ const showEdit = async (req, res) => {
             msg: `Error en showEdit: ${e}`
         });
 
-    }
+    };
 };
 
 
@@ -141,7 +141,7 @@ const editEntry = async (req, res) => {
             msg: `Error en showEdit: ${e}`
         });
 
-    }
+    };
 };
 
 
@@ -172,7 +172,7 @@ const getEntryByID = async (req, res) => {
             msg: `Error en getEntryByID: ${e}`
         });
 
-    }
+    };
 };
 
 
@@ -212,7 +212,7 @@ const deleteEntry = async (req, res) => {
             msg: `Error en deleteEntry: ${e}`,
         });
 
-    }
+    };
 };
 
 
@@ -249,10 +249,10 @@ const changePassword = async (req, res, next) => {
 
         const { data } = await fetchData(url, method, req.body);
 
-        if (data.ok) {
+        if (data.ok)
             res.redirect('/admin');
 
-        } else {
+        else {
 
             if (data.errors) {
 

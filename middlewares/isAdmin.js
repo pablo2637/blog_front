@@ -7,7 +7,6 @@ const isAdmin = async (req, res, next) => {
 
     try {
 
-
         await renewToken(req, res);
 
         const user = await getUserDataCookie(req, res);
@@ -19,10 +18,10 @@ const isAdmin = async (req, res, next) => {
             next();
 
     } catch (e) {
+
         res.redirect('/user/login');
 
-    }
-
+    };
 };
 
 
@@ -41,10 +40,10 @@ const isNotAdmin = async (req, res, next) => {
             next();
 
     } catch (e) {
+
         res.redirect('/user/login');
 
-    }
-
+    };
 };
 
 

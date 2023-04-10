@@ -10,9 +10,9 @@ const fetchData = async (url, method, body) => {
             headers: { 'Content-Type': 'application/json' },
             body
         };
-    else if (method == 'DELETE') options = { method };
 
-    //console.log('fetchData: url', url, 'body', body, 'options', options);
+    else if (method == 'DELETE')
+        options = { method };
 
 
     try {
@@ -20,11 +20,12 @@ const fetchData = async (url, method, body) => {
         const request = await fetch(url, options);
         const response = await request.json();
 
-        if (!response) return {
-            ok: false,
-            msg: 'Error fetchData',
-            response
-        };
+        if (!response)
+            return {
+                ok: false,
+                msg: 'Error fetchData',
+                response
+            };
 
         return {
             ok: true,
@@ -32,7 +33,7 @@ const fetchData = async (url, method, body) => {
         };
 
     } catch (e) {
-       
+
         return {
             ok: false,
             error: e

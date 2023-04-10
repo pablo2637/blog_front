@@ -7,8 +7,7 @@ const {
     setUserCookie,
     setUserToken,
     getUserDataCookie,
-    clearCookies,
-    getUserTokenCookie } = require('../helpers/cookies');
+    clearCookies } = require('../helpers/cookies');
 
 
 const showLogin = async (req, res) => {
@@ -98,7 +97,7 @@ const registerUser = async (req, res, next) => {
 
 
     } catch (e) {
-       
+
         return res.status(500).json({
             ok: false,
             msg: `Error en registerUser: ${e}`
@@ -116,9 +115,9 @@ const loginUser = async (req, res, next) => {
         const { url, method } = getURLs('loginUser', req);
 
         const { data } = await fetchData(url, method, req.body);
-        
+
         if (data.ok) {
-            
+
             const user = data.user;
             user.email = req.body.email;
 
@@ -138,19 +137,18 @@ const loginUser = async (req, res, next) => {
             if (data.errors) {
                 if (data.errors.email) error = data.errors.email.msg;
 
-            }
-            else error = data.msg;
+            } else error = data.msg;
 
             res.render('login', {
                 urlTitle: 'Blog: login error',
                 user: req.body.email,
                 error
             });
+
         }
 
-
     } catch (e) {
-       
+
         return res.status(500).json({
             ok: false,
             msg: `Error en loginUser: ${e}`
@@ -176,6 +174,7 @@ const logoutUser = async (req, res) => {
         res.redirect('/');
 
     } catch (e) {
+
         return res.status(500).JSON({
             ok: false,
             msg: `Error en logoutUser: ${e}`
@@ -187,7 +186,7 @@ const logoutUser = async (req, res) => {
 
 const redirectUser = async (req, res) => {
 
-    const { rol } = await getUserDataCookie(req, res);    
+    const { rol } = await getUserDataCookie(req, res);
 
     if (rol == 'admin')
         res.redirect('/admin');
@@ -217,6 +216,7 @@ const changePassword = async (req, res, next) => {
     try {
 
         if (req.body.newPassword != req.body.passwordR) {
+
             err.passwordR = 'Los passwords no coinciden, por favor, revísalos.';
 
             return res.render('changePassword', {
@@ -229,11 +229,11 @@ const changePassword = async (req, res, next) => {
         const { url, method } = getURLs('changePassword', req);
 
         const { data } = await fetchData(url, method, req.body);
-        
-        if (data.ok) {
+
+        if (data.ok)
             res.redirect('/blog');
 
-        } else {
+        else {
 
             if (data.errors) {
 
@@ -257,7 +257,7 @@ const changePassword = async (req, res, next) => {
 
 
     } catch (e) {
-      
+
         return res.status(500).json({
             ok: false,
             msg: `Error en changePassword: ${e}`

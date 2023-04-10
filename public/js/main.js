@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', ev => {
 
         if (ev.target.matches('i')) {
-            //console.log('click', ev.target)
 
             if (ev.target.classList.contains('iBtnMenu'))
                 divMenu.classList.toggle('mostrarNav');
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (ev.target.classList.contains('deleteEntry'))
                 showWarning(ev.target);
+                
             else if (ev.target.classList.contains('cancelDelete'))
                 showWarning(ev.target);
 
