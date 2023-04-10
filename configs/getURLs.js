@@ -2,7 +2,7 @@ const urlBaseBack = process.env.URL_BASE_BACK;
 const urlAPIEntries = 'api/entries';
 const urlAPIUser = 'api/users';
 
-const limitePorDefecto = 10;
+const limitePorDefecto = 5;
 
 
 const getURLs = (tipo, data) => {
@@ -11,8 +11,8 @@ const getURLs = (tipo, data) => {
     const params = data.params;
     const query = data.query;
 
-    const page = query.page || 1;
-    const limit = query.limit || limitePorDefecto;
+    const page = body.page || query.page || 1;
+    const limit = body.limit || query.limit || limitePorDefecto;    
 
     let url, method;
 
@@ -75,7 +75,6 @@ const getURLs = (tipo, data) => {
             url = `${urlBaseBack}/${urlAPIUser}/changePassword`;
             method = 'PUT';
             break;
-
 
     };
 

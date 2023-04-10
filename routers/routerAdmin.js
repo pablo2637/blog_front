@@ -19,6 +19,10 @@ router.get('/', [
     isAdmin
 ], showAdmin);
 
+router.post('/', [
+    isAdmin
+], showAdmin);
+
 
 router.get('/edit/:entryID', [
     isAdmin

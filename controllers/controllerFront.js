@@ -46,14 +46,15 @@ const searchEntries = async (req, res) => {
     try {
 
         const { url, method } = getURLs('getEntriesBySearch', req);
-       
+
         let { data } = await fetchData(url, method);
 
         if (data.ok) {
 
             let message;
             if (data.data) {
-                message = `Has buscado: '${req.body.text}'...`;
+
+                message = req.body.text;
 
                 data.data.map(entry => {
                     entry.date = new Date(entry.date).toLocaleDateString();
@@ -69,7 +70,7 @@ const searchEntries = async (req, res) => {
             const user = await getUserDataCookie(req, res);
 
             res.render('blog', {
-                urlTitle: 'Blog: entradas',
+                urlTitle: 'Blog: entradas - búsqueda',
                 msg: message,
                 entries: data,
                 user
@@ -79,7 +80,7 @@ const searchEntries = async (req, res) => {
     } catch (e) {
 
         res.status(500).send({
-            urlTitle: 'Blog: entradas',
+            urlTitle: 'Blog: entradas - búsqueda',
             msg: `Error en searchEntries: ${e}`
         });
 
@@ -90,6 +91,9 @@ const searchEntries = async (req, res) => {
 const searchEntriesByEmail = async (req, res) => {
 
     try {
+
+        const user = await getUserDataCookie(req, res);
+        req.params.email = user.email;
 
         const { url, method } = getURLs('getEntriesByEmail', req);
 
@@ -113,7 +117,7 @@ const searchEntriesByEmail = async (req, res) => {
             const user = await getUserDataCookie(req, res);
 
             res.render('blog', {
-                urlTitle: 'Blog: entradas',
+                urlTitle: 'Blog: entradas - email',
                 msg: message,
                 entries: data,
                 user
@@ -123,7 +127,7 @@ const searchEntriesByEmail = async (req, res) => {
     } catch (e) {
 
         res.status(500).send({
-            urlTitle: 'Blog: entradas',
+            urlTitle: 'Blog: entradas - email',
             msg: `Error en searchEntriesByEmail: ${e}`
         });
 

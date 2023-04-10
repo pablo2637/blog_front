@@ -8,7 +8,7 @@ const { getUserDataCookie } = require('../helpers/cookies');
 const showAdmin = async (req, res) => {
 
     try {
-
+        
         const { url, method } = getURLs('getEntries', req);
 
         const { data } = await fetchData(url, method);

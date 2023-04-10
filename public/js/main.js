@@ -2,10 +2,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const divMenu = document.querySelector('#divMenu');
     const formPages = document.querySelector('.formPages');
+    const selPage = document.querySelector('#page');
 
     document.addEventListener('click', ({ target }) => {
-
+        // console.log('click', target)
         if (target.matches('i')) {
+
+            if (target.id == 'nextPage') {
+                
+                selPage.value = parseInt(selPage.value) + 1;                
+                formPages.submit();
+            }
+
+            if (target.id == 'prevPage') {
+                
+                selPage.value = parseInt(selPage.value) - 1;                
+                formPages.submit();
+            }
+
 
             if (target.classList.contains('iBtnMenu'))
                 divMenu.classList.toggle('mostrarNav');
@@ -28,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     document.addEventListener('change', ({ target }) => {
-
+        // console.log('change', target.parentNode)
         if (target.matches('select'))
             formPages.submit();
 

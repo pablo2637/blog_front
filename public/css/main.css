@@ -322,10 +322,18 @@ footer {
 #divPages {
     width: 95%;
     margin: 15px auto;
-    background-color: darkslategray;
     text-align: center;
     padding: 10px;
     font-size: 1.2em;
+    background-color: darkslategray;
+}
+
+#divPages button {
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    border: none;
+    background-color: transparent;
 }
 
 #divPages a {
@@ -341,6 +349,7 @@ footer {
 
 .btnFlecha {
     color: darkcyan;
+    cursor: default;
 }
 
 .divSearch {

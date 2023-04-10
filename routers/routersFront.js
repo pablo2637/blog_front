@@ -25,6 +25,10 @@ router.get('/blog', [
     isNotAdmin
 ], getEntries);
 
+router.post('/blog', [
+    isNotAdmin
+], getEntries);
+
 
 router.get('/detail/:entryID', [
     isNotAdmin
@@ -59,12 +63,16 @@ router.post('/edit', [
 ], editEntry);
 
 
-router.post('/search/', [
+router.post('/search', [
     isNotAdmin
 ], searchEntries);
 
 
-router.get('/email/:email', [
+router.get('/email', [
+    isNotAdmin
+], searchEntriesByEmail);
+
+router.post('/email', [
     isNotAdmin
 ], searchEntriesByEmail);
 

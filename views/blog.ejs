@@ -25,17 +25,24 @@
             <p>Página actual: <span class="spnPages"><%- entries.page %></span></p>
         </section>
 
-
-        <form class="formPages" action="/blog" method="GET">
+        <% if (urlTitle.includes('email')) { %>
+            <form class="formPages" action="/email" method="POST">        
+        <% } else if (urlTitle.includes('búsqueda')) { %>
+            <form class="formPages" action="/search" method="POST">
+                <input type="hidden" name="text" value="<%- msg %>">
+        <% } else { %>
+            <form class="formPages" action="/blog" method="POST">         
+        <% } %>                 
+        
             <div class="divOpts1">
                 <label for="limit">Entradas por página:</label>
-                <select name="limit" id="limit">
+                <select name="limit" id="limit">                    
                     <% for( let i=1; i < 6; i++ ) { %>
 
-                        <% if (entries.limit==(i*10)) { %>
-                            <option value="<%- i*10 %>" selected><%- i*10 %></option>
+                        <% if (entries.limit==(i*5)) { %>
+                            <option value="<%- i*5 %>" selected><%- i*5 %></option>                           
                         <% } else { %>
-                            <option value="<%- i*10 %>"><%- i*10 %></option>
+                            <option value="<%- i*5 %>"><%- i*5 %></option>
                         <% } %>
 
                     <% } %>
@@ -65,7 +72,7 @@
 
             <% if (msg !='' ) { %>
 
-                <p id="pMsg"><%- msg %></p>
+                <p id="pMsg">Has buscado: '<%- msg %>'...</p>
                 <a id="goBlog" href="/blog"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
 
             <% } %>
@@ -111,19 +118,21 @@
         <% } %>
 
         <div id="divPages">
+            
             <% if (entries.page > 1) { %>
-                <a href="/blog?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
+                <button><i id="prevPage" class="fa-solid fa-circle-arrow-left"></i></button>
             <% } else { %>
-                <i class="btnFlecha fa-solid fa-circle-arrow-left"></i>
-            <% } %>
+                <button disabled><i class="btnFlecha fa-solid fa-circle-arrow-left"></i></button>
+            <% } %>            
 
             <p class="pPage"><%- entries.page %></p>      
-
+            
             <% if (entries.totalPages !=entries.page) { %>
-                <a href="/blog?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
+                <button><i id="nextPage" class="fa-solid fa-circle-arrow-right"></i></button>
             <% } else { %>
-                <i class="btnFlecha fa-solid fa-circle-arrow-right"></i>
+                <button disabled="true"><i class="btnFlecha fa-solid fa-circle-arrow-right"></i></button>
             <% } %>
+            
         </div>
 
     </main>

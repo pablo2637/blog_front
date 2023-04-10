@@ -13,7 +13,7 @@
 <body>
     <header>
         <div>
-            <a href="/">
+            <a id="aH1Main" href="/">
                 <h1 id="h1Main">Blog.com</h1>
             </a>
         </div>
@@ -27,7 +27,7 @@
             
             <% if (user && !urlTitle.includes('registro')) { %>
                 <a href="/blog">Blog</a>
-                <a href="/email/<%- user.email %>">Mis publicaciones</a>
+                <a href="/email">Mis publicaciones</a>
                 <a href="/user/change">Cambiar password</a>
                 <a href="/user/logout">Logout</a>
             <% } else { %>
