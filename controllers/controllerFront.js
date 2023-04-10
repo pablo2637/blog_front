@@ -46,7 +46,7 @@ const searchEntries = async (req, res) => {
     try {
 
         const { url, method } = getURLs('getEntriesBySearch', req);
-
+       
         let { data } = await fetchData(url, method);
 
         if (data.ok) {
@@ -77,7 +77,8 @@ const searchEntries = async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).send('index', {
+
+        res.status(500).send({
             urlTitle: 'Blog: entradas',
             msg: `Error en searchEntries: ${e}`
         });
@@ -120,6 +121,7 @@ const searchEntriesByEmail = async (req, res) => {
         }
 
     } catch (e) {
+
         res.status(500).send({
             urlTitle: 'Blog: entradas',
             msg: `Error en searchEntriesByEmail: ${e}`
@@ -154,6 +156,7 @@ const getEntryByID = async (req, res) => {
         }
 
     } catch (e) {
+
         res.status(500).send({
             urlTitle: 'Blog: entrada',
             msg: `Error en getEntryByID: ${e}`
