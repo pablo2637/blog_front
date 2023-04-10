@@ -14,15 +14,15 @@
                 <input type="text" name="date" id="date" value="<%- entry.date %> <%- entry.time%>" readonly>
 
                 <label for="title">Título:</label>
-                <input type="text" name="title" id="title" value="<%- entry.title %>">
+                <input type="text" name="title" id="title" value="<%- entry.title %>" autocomplete="off">
                 <span class="spnError"><%- msg.title %></span>
 
                 <label for="extract">Extracto:</label>
-                <input type="text" name="extract" id="extract" value="<%- entry.extract %>">
+                <input type="text" name="extract" id="extract" value="<%- entry.extract %>" autocomplete="off">
                 <span class="spnError"><%- msg.extract %></span>
 
                 <label for="content">Contenido:</label>
-                <textarea name="content" id="content" rows="4"><%- entry.content %></textarea>
+                <textarea name="content" id="content" rows="4" autocomplete="off"><%- entry.content %></textarea>
                 <span class="spnError"><%- msg.content %></span>
 
                 <img src="/media/<%- entry.image %>" alt="">

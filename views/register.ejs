@@ -10,19 +10,19 @@
             <form action="../user/register" method="POST">
 
                 <label for="nameR">Nombre:</label>
-                <input type="text" name="name" id="nameR" value="<%- user.name %>">
+                <input type="text" name="name" id="nameR" autocomplete="off" value="<%- user.name %>">
                 <span class="spnErrorReg"><%- error.name %></span>
 
                 <label for="email">Email:</label>
-                <input type="text" name="email" id="email" value="<%- user.email %>">
+                <input type="text" name="email" id="email" autocomplete="off" value="<%- user.email %>">
                 <span class="spnErrorReg"><%- error.email %></span>
 
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" value="<%- user.password %>">
+                <input type="password" name="password" id="password" autocomplete="off" value="<%- user.password %>">
                 <span class="spnErrorReg"><%- error.password %></span>
 
                 <label for="passwordR">Repetir Password:</label>
-                <input type="password" name="passwordR" id="passwordR" value="<%- user.passwordR %>">
+                <input type="password" name="passwordR" id="passwordR" autocomplete="off" value="<%- user.passwordR %>">
                 <span class="spnErrorReg"><%- error.passwordR %></span>
              
                 <div id="btnsLogin">

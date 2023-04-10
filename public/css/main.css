@@ -23,8 +23,12 @@ header {
     box-shadow: 0 0 10px rgb(137, 137, 138);
 }
 
-#h1Main {
+#aH1Main {
     text-decoration: none;
+}
+
+#h1Main {
+
     color: white;
     text-align: left;
     text-indent: 5px;
