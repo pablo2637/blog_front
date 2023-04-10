@@ -1,27 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const divMenu = document.querySelector('#divMenu');
+    const formPages = document.querySelector('.formPages');
+    const selPage = document.querySelector('#page');
 
-    document.addEventListener('click', ev => {
+    document.addEventListener('click', ({ target }) => {
+        // console.log('click', target)
+        if (target.matches('i')) {
 
-        if (ev.target.matches('i')) {
+            if (target.id == 'nextPage') {
+                
+                selPage.value = parseInt(selPage.value) + 1;                
+                formPages.submit();
+            }
 
-            if (ev.target.classList.contains('iBtnMenu'))
+            if (target.id == 'prevPage') {
+                
+                selPage.value = parseInt(selPage.value) - 1;                
+                formPages.submit();
+            }
+
+
+            if (target.classList.contains('iBtnMenu'))
                 divMenu.classList.toggle('mostrarNav');
 
 
-            if (ev.target.classList.contains('deleteEntry'))
-                showWarning(ev.target);
-                
-            else if (ev.target.classList.contains('cancelDelete'))
-                showWarning(ev.target);
+            if (target.classList.contains('deleteEntry'))
+                showWarning(target);
+
+            else if (target.classList.contains('cancelDelete'))
+                showWarning(target);
 
         } else {
-            
+
             if (divMenu.classList.contains('mostrarNav'))
                 divMenu.classList.toggle('mostrarNav');
 
         }
+
+    });
+
+
+    document.addEventListener('change', ({ target }) => {
+        // console.log('change', target.parentNode)
+        if (target.matches('select'))
+            formPages.submit();
 
     });
 
@@ -32,6 +55,5 @@ document.addEventListener('DOMContentLoaded', () => {
         tr.classList.toggle('ocultar');
 
     };
-
 
 }); //Load

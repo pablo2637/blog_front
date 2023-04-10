@@ -1,4 +1,6 @@
-//Fetch
+const fetch = require('node-fetch');
+
+
 const fetchData = async (url, method, body) => {
 
     body = JSON.stringify(body);

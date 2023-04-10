@@ -11,16 +11,16 @@
         </section>
 
 
-        <form class="formPages" action="/admin" method="GET">
+        <form class="formPages" action="/admin" method="POST">
             <div class="divOpts1">
                 <label for="limit">Entradas por página:</label>
                 <select name="limit" id="limit">
                     <% for( let i=1; i < 6; i++ ) { %>
 
-                        <% if (entries.limit==(i*10)) { %>
-                            <option value="<%- i*10 %>" selected><%- i*10 %></option>
+                        <% if (entries.limit==(i*5)) { %>
+                            <option value="<%- i*5 %>" selected><%- i*5 %></option>
                         <% } else { %>
-                            <option value="<%- i*10 %>"><%- i*10 %></option>
+                            <option value="<%- i*5 %>"><%- i*5 %></option>
                         <% } %>
 
                     <% } %>
@@ -43,8 +43,6 @@
 
                 </select>
             </div>
-
-            <button type="submit"><i class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
 
         </form>
 
@@ -103,18 +101,19 @@
         </table>
 
         <div id="divPages">
+
             <% if (entries.page !=1) { %>
-                <a href="/admin?page=<%- entries.page-1  %>"><i class="fa-solid fa-circle-arrow-left"></i></a>
+                <button><i id="prevPage" class="fa-solid fa-circle-arrow-left"></i></button>
             <% } else { %>
-                <i class="btnFlecha fa-solid fa-circle-arrow-left"></i>
+                <button disabled><i class="btnFlecha fa-solid fa-circle-arrow-left"></i></button>
             <% } %>
              
             <p class="pPage"><%- entries.page %></p>         
 
             <% if (entries.totalPages !=entries.page) { %>
-                <a href="/admin?page=<%- entries.page+1  %>"><i class="fa-solid fa-circle-arrow-right"></i></a>
+                <button><i id="nextPage" class="fa-solid fa-circle-arrow-right"></i></button>
             <% } else { %>
-                <i class="btnFlecha fa-solid fa-circle-arrow-right"></i>
+                <button disabled="true"><i class="btnFlecha fa-solid fa-circle-arrow-right"></i></button>
             <% } %>
         </div>
 
