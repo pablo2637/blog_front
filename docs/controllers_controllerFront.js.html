@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/controllerFront.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/controllerFront.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { fetchData } = require('../helpers/fetchData')
+const { getURLs } = require('../configs/getURLs')
+
+const { getUserDataCookie } = require('../helpers/cookies')
+
+const fs = require('fs').promises;
+
+/**
+ * @author Pablo
+ * @exports Object
+ * @namespace controllerFront
+ */
+
+
+/**
+ * Definición del tipo entriesData
+ * @typedef {Object} entriesData
+ * @memberof controllerFront
+ * @property {String} urlTitle Título de la página
+ * @property {String} msg Mensaje con información variable
+ * @property {Array} entries Las entradas devueltas por la consulta
+ */
+
+/**
+ * Definición del tipo entryData
+ * @typedef {Object} entryData
+ * @memberof controllerFront
+ * @property {String} urlTitle Título de la página
+ * @property {String} msg Mensaje con información variable
+ * @property {Object} entry La entrada devuelta por la consulta
+ */
+
+/**
+ * Definición del tipo User
+ * @typedef {Object} User
+ * @memberof controllerFront
+ * @property {String | Number} id ID del usuario
+ * @property {String} name Nombre del usuario
+ * @property {String} email Email del usuario
+ * @property {String} rol Rol del usuario
+ */
+
+/**
+ * Renderiza en 'index' del user las entradas de la base de datos,
+ * enviando un objeto :entriesData
+ * @memberof controllerFront 
+ * @method getEntries
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ * @throws {json} Devuelve el error
+ */
+const getEntries = async (req, res) => {
+
+    try {
+
+        const { url, method } = getURLs('getEntries', req);
+
+        const { data } = await fetchData(url, method);
+
+        if (data.ok) {
+
+            if (!data.msg.includes('No hay'))
+                data.data.map(entry => {
+                    entry.date = new Date(entry.date).toLocaleDateString();
+                    entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+                });
+
+            const user = await getUserDataCookie(req, res);
+
+            res.render('blog', {
+                urlTitle: 'Blog: entradas',
+                msg: '',
+                entries: data,
+                user
+            });
+        }
+
+    } catch (e) {
+        console.log('catchError en getEntries:', e);
+
+        res.status(500).send({
+            urlTitle: 'Blog: entradas',
+            msg: `Error en getEntries: ${e}`
+        });
+
+    };
+};
+
+
+/**
+ * Renderiza en el 'index' del user las entradas de la base de datos que coincidan con
+ * la búsqueda de texto, enviando un objeto :entriesData.
+ * @memberof controllerFront 
+ * @method searchEntries
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ * @throws {json} Devuelve el error
+ */
+const searchEntries = async (req, res) => {
+
+    try {
+
+        const { url, method } = getURLs('getEntriesBySearch', req);
+
+        let { data } = await fetchData(url, method);
+
+        if (data.ok) {
+
+            let message;
+            if (data.data) {
+
+                message = req.body.text;
+
+                data.data.map(entry => {
+                    entry.date = new Date(entry.date).toLocaleDateString();
+                    entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+                });
+
+            } else {
+                data = { ok: false };
+                message = `Oh.. tu búsqueda: '${req.body.text}', no hay dado resultados...`;
+
+            }
+
+            const user = await getUserDataCookie(req, res);
+
+            res.render('blog', {
+                urlTitle: 'Blog: entradas - búsqueda',
+                msg: message,
+                entries: data,
+                user
+            });
+        }
+
+    } catch (e) {
+        console.log('catchError en searchEntries:', e);
+
+        res.status(500).send({
+            urlTitle: 'Blog: entradas - búsqueda',
+            msg: `Error en searchEntries: ${e}`
+        });
+
+    };
+};
+
+
+/**
+ * Renderiza en el 'index' del user las entradas de la base de datos que coincidan con un email
+ * específico, enviando un objeto :entriesData.
+ * @memberof controllerFront 
+ * @method searchEntriesByEmail
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas. Debe contener
+ * params.email o body.email
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ * @throws {json} Devuelve el error
+ */
+const searchEntriesByEmail = async (req, res) => {
+
+    try {
+
+        if (req.body.email)
+            req.params.email = req.body.email;
+
+        else {
+
+            const user = await getUserDataCookie(req, res);
+            req.params.email = user.email;
+        }
+
+        const { url, method } = getURLs('getEntriesByEmail', req);
+
+        let { data } = await fetchData(url, method);
+
+        if (data.ok) {
+
+            let message = '';
+
+            if (data.data)
+                data.data.map(entry => {
+                    entry.date = new Date(entry.date).toLocaleDateString();
+                    entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+                })
+
+            else {
+                data = [];
+                message = 'Aún no tienes publicaciones...'
+            }
+
+            const user = await getUserDataCookie(req, res);
+
+            res.render('blog', {
+                urlTitle: 'Blog: entradas - email',
+                msg: message,
+                entries: data,
+                user
+            });
+        }
+
+    } catch (e) {
+        console.log('catchError en searchEntriesByEmail:', e);
+
+        res.status(500).send({
+            urlTitle: 'Blog: entradas - email',
+            msg: `Error en searchEntriesByEmail: ${e}`
+        });
+
+    };
+};
+
+
+/**
+ * Renderiza en 'detail' del user la entrada de la base de datos que coincide con un id
+ * específico, enviando un objeto :entryData.
+ * @memberof controllerFront 
+ * @method getEntryByID
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ * @throws {json} Devuelve el error
+ */
+const getEntryByID = async (req, res) => {
+
+    try {
+
+        const { url, method } = getURLs('getEntryByID', req);
+
+        const { data } = await fetchData(url, method);
+
+        if (data.ok) {
+
+            const entry = data.data[0];
+
+            entry.date = new Date(entry.date).toLocaleDateString();
+            entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+
+            const user = await getUserDataCookie(req, res);
+
+            res.render('detail', {
+                urlTitle: 'Blog: entrada',
+                entry,
+                user
+            });
+        }
+
+    } catch (e) {
+        console.log('catchError en getEntryByID:', e);
+
+        res.status(500).send({
+            urlTitle: 'Blog: entrada',
+            msg: `Error en getEntryByID: ${e}`
+        });
+
+    }
+};
+
+
+/**
+ * Renderiza 'new' del user para crear una entrada nueva, se envía un Object :User.
+ * @memberof controllerFront 
+ * @method showNew
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ */
+const showNew = async (req, res) => {
+
+    const user = await getUserDataCookie(req, res);
+
+    res.render('new', {
+        urlTitle: 'Blog: nueva',
+        msg: '',
+        entry: '',
+        user
+    });
+
+};
+
+
+/**
+ * Recibe los datos para primero validar, y luego, crear una entrada nueva,
+ * si las validaciones son correctas se redirige al 'index'.
+ * En caso de errores se devuelven en un Object, y se renderiza el 'new'.
+ * @memberof controllerFront 
+ * @method createEntry
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ * @throws {json} Devuelve el error
+ */
+const createEntry = async (req, res) => {
+
+    try {
+
+        if (req.file != undefined)
+            req.body.image = req.file.filename;
+
+        else
+            req.body.image = '';
+
+        const { url, method } = getURLs('postEntry', req);
+        const { data } = await fetchData(url, method, req.body);
+
+        if (data.ok)
+            res.redirect('/blog');
+
+        else {
+
+            if (data.errors) {
+                let err = {};
+                const e = data.errors;
+
+                if (e.title)
+                    err.title = e.title.msg;
+
+                if (e.content)
+                    err.content = e.content.msg;
+
+                if (e.extract)
+                    err.extract = e.extract.msg;
+
+                if (e.image)
+                    err.image = e.image.msg;
+
+                const user = await getUserDataCookie(req, res);
+
+                res.render('new', {
+                    entry: req.body,
+                    msg: err,
+                    urlTitle: 'Blog: nueva',
+                    user
+                });
+
+            } else
+                res.status(500).send({
+                    urlTitle: 'Blog: error',
+                    msg: `Error en createEntry`,
+                    data
+                });
+
+        }
+
+    } catch (e) {
+        console.log('catchError en createEntry:', e);
+
+        res.status(500).send({
+            urlTitle: 'Blog: error',
+            msg: `Error en createEntry: ${e}`
+        });
+
+    };
+};
+
+
+/**
+ * Renderiza 'edit' del user para editar ña entrada que se especifica en el id, se envía un Object :entryData.
+ * @memberof controllerFront 
+ * @method showEdit
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas, debe contener
+ * params.entryID con el id que se quiere buscar.
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ */
+const showEdit = async (req, res) => {
+
+    try {
+
+        const { url, method } = getURLs('getEntryByID', req);
+
+        const { data } = await fetchData(url, method);
+
+        if (data.ok) {
+
+            const entry = data.data[0];
+
+            entry.date = new Date(entry.date).toLocaleDateString();
+            entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+
+            const user = await getUserDataCookie(req, res)
+
+            res.render('edit', {
+                urlTitle: 'Blog: editar',
+                msg: '',
+                entry,
+                user
+            });
+
+        }
+
+    } catch (e) {
+        console.log('catchError en showEdit:', e);
+
+        res.status(500).send({
+            urlTitle: 'Blog:  editar',
+            msg: `Error en showEdit: ${e}`
+        });
+
+    };
+};
+
+
+/**
+ * Recibe los datos para primero validar, y luego, modificar una entrada,
+ * si las validaciones son correctas se redirige a 'detail'.
+ * En caso de errores se devuelven en un Object, y se renderiza el 'edit'.
+ * @memberof controllerFront 
+ * @method editEntry
+ * @async
+ * @param {Object} req Es el requerimiento que proviene de las rutas
+ * @param {Object} res Es la respuesta que proviene de las rutas    
+ * @throws {json} Devuelve el error
+ */
+const editEntry = async (req, res) => {
+
+    try {
+
+        let oldPic = req.body.image;
+
+        try {
+            if (req.file != undefined)
+                await fs.unlink(`./public/media/${oldPic}`);
+
+        } catch (error) {
+
+        } finally {
+
+            if (req.file != undefined)
+                req.body.image = req.file.filename;
+            else
+                req.body.image;
+        }
+
+
+        const { url, method } = getURLs('putEntry', req);
+        const { data } = await fetchData(url, method, req.body);
+
+        if (data.ok)
+            res.redirect(`/detail/${req.body.entryID}`);
+
+        else {
+
+            if (data.errors) {
+                let err = {};
+                const e = data.errors;
+
+                if (e.title)
+                    err.title = e.title.msg;
+
+                if (e.content)
+                    err.content = e.content.msg;
+
+                if (e.extract)
+                    err.extract = e.extract.msg;
+
+                if (e.image)
+                    err.image = e.image.msg;
+
+                const user = await getUserDataCookie(req, res);
+                res.render('edit', {
+                    entry: req.body,
+                    msg: err,
+                    user,
+                    urlTitle: 'Blog: editar'
+                });
+
+            } else
+                res.status(500).send({
+                    urlTitle: 'Blog: error',
+                    msg: `Error en editEntry`,
+                    data
+                });
+
+        }
+
+    } catch (e) {
+        console.log('catchError en editEntry:', e);
+
+        res.status(500).send({
+            urlTitle: 'Blog: error',
+            msg: `Error en editEntry: ${e}`
+        });
+
+    };
+};
+
+
+module.exports = {
+    getEntries,
+    searchEntries,
+    searchEntriesByEmail,
+    getEntryByID,
+    showEdit,
+    editEntry,
+    showNew,
+    createEntry
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="controllerAdmin.html">controllerAdmin</a></li><li><a href="controllerFront.html">controllerFront</a></li><li><a href="controllerUser.html">controllerUser</a></li><li><a href="cookies.html">cookies</a></li><li><a href="fetchData.html">fetchData</a></li><li><a href="getURLs.html">getURLs</a></li><li><a href="isAdmin.html">isAdmin</a></li><li><a href="jwt.html">jwt</a></li><li><a href="validateJWT.html">validateJWT</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Apr 12 2023 09:18:12 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

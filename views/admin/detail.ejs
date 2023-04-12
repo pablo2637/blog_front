@@ -6,16 +6,16 @@
             <div class="divDetails">
 
                 <a id="btnBack" href="javascript:history.back()"><i class="fa-solid fa-left-long"></i> Volver</a>        
-                <a id="btnEdit" href="/admin/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a> 
+                <a id="btnEdit" title="Editar esta entrada" href="/admin/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a> 
             
             </div>
 
             <p class="title"><%- entry.title %></p>
-
-            <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+            
+            <button class="authorAdmin" title="Ver todas las entradas de <%- entry.name %>"><%- entry.name %></button>
             <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
 
-            <img id="imgDetail"  src="/media/<%- entry.image %>" alt="">
+            <img id="imgDetail"  src="/media/<%- entry.image %>" alt="Imagen de la entrada de <%- entry.name %>">
 
             <p class="content"><%- entry.content %></p>
             

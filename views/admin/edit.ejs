@@ -1,7 +1,7 @@
 <%- include( 'templates/headerSE' ,{urlTitle} ) %>
 
     <main>
-        <h1 class="h1Admin">Administrador: Editar</h1>
+        <h1 class="h1Admin">Administrador: editar entrada</h1>
 
         <div class="divEdit">
 
@@ -14,7 +14,7 @@
                 <input type="text" name="date" id="date" value="<%- entry.date %> <%- entry.time%>" readonly>
 
                 <label for="title">Título:</label>
-                <input type="text" name="title" id="title" value="<%- entry.title %>" autocomplete="off">
+                <input type="text" name="title" id="title" value="<%- entry.title %>" autocomplete="off" autofocus>
                 <span class="spnError"><%- msg.title %></span>
 
                 <label for="extract">Extracto:</label>
@@ -25,7 +25,7 @@
                 <textarea name="content" id="content" rows="4" autocomplete="off"><%- entry.content %></textarea>
                 <span class="spnError"><%- msg.content %></span>
 
-                <img src="/media/<%- entry.image %>" alt="">
+                <img src="/media/<%- entry.image %>" alt="Imagen de la entrada de <%- entry.name %>">
 
                 <label for="image">Imagen:</label>
                 <input type="text" name="image" id="image" value="<%- entry.image %>" readonly>

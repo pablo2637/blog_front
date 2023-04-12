@@ -3,9 +3,10 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 
-port = process.env.PORT;
+const port = process.env.PORT;
 
 const cookieParser = require('cookie-parser');
+const { getUserDataCookie } = require('./helpers/cookies');
 
 app.use(cors());                                    //Cors
 app.use(express.static(__dirname + '/public'));     //Carpeta static
@@ -26,12 +27,15 @@ app.use('/admin', require('./routers/routerAdmin'));    //Admin
 
 
 //404
-app.use((req, res, next) => {
+
+app.use(async (req, res, next) => {
+    const user = await getUserDataCookie(req, res);
+
     res.status(404).render('404', {
         urlTitle: '404 - Página no encontrada',
         error: '404',
         msg: 'Página no encontrada.',
-        user:''
+        user
     })
 });
 
