@@ -4,15 +4,17 @@
         <h1 class="h1Admin">Entradas</h1>
 
         <div id="divNE">
-            <h2 id="h2Name">Hola <%- user.name %>!</h2>
+            <% if (user) { %>            
+                <h2 id="h2Name">Hola <%- user.name %>!</h2>
+            <% } %>
 
-            <a id="newEntry" href="/new"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
+            <a id="newEntry" href="/new" title="Crear una entrada nueva"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
         </div>
 
         <section class="secSearch">
             <form action="/search" method="POST">
                 <div class="divSearch">
-                    <input type="text" name="text" id="txtSearch" placeholder="Escribe aquí..." autocomplete="off">
+                    <input type="text" name="text" id="txtSearch" placeholder="Escribe aquí..." autocomplete="off" autofocus>
                     <span><i class="lupa fa-solid fa-magnifying-glass"></i></span>
                 </div>
             </form>
@@ -86,13 +88,17 @@
                         <div class="divContainer">
                             <p class="title"><%- entry.title %></p>
 
-                            <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+                            <form action="/email" method="POST">
+                                <input type="hidden" name="email" value="<%- entry.email %>">
+                                <button class="author" title="Ver todas las entradas de <%- entry.name %>"><%- entry.name %></button>
+                            </form>
+
                             <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
 
-                            <img src="/media/<%- entry.image %>" alt="">
+                            <img src="/media/<%- entry.image %>" alt="Imagen de la entrada de <%- user.name %>">
 
                             <p class="extract"><%- entry.extract %></p>
-                            <a class="readMore" href="/detail/<%- entry.entryid %>">Leer más...</a>
+                            <a class="readMore" title="Leer la entrada completa" href="/detail/<%- entry.entryid %>">Leer más...</a>
                         </div>
 
                     </article>
@@ -120,7 +126,7 @@
         <div id="divPages">
             
             <% if (entries.page > 1) { %>
-                <button><i id="prevPage" class="fa-solid fa-circle-arrow-left"></i></button>
+                <button title="Ir a la página anterior"><i id="prevPage" class="fa-solid fa-circle-arrow-left"></i></button>
             <% } else { %>
                 <button disabled><i class="btnFlecha fa-solid fa-circle-arrow-left"></i></button>
             <% } %>            
@@ -128,7 +134,7 @@
             <p class="pPage"><%- entries.page %></p>      
             
             <% if (entries.totalPages !=entries.page) { %>
-                <button><i id="nextPage" class="fa-solid fa-circle-arrow-right"></i></button>
+                <button title="Ir a la página siguiente"><i id="nextPage" class="fa-solid fa-circle-arrow-right"></i></button>
             <% } else { %>
                 <button disabled="true"><i class="btnFlecha fa-solid fa-circle-arrow-right"></i></button>
             <% } %>

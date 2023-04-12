@@ -15,9 +15,10 @@ main {
 }
 
 header {
+    position: sticky;
     background-color: black;
     color: white;
-    padding: 20px;
+    padding: 15px;
     text-align: right;
     text-indent: 15px;
     box-shadow: 0 0 10px rgb(137, 137, 138);
@@ -28,7 +29,6 @@ header {
 }
 
 #h1Main {
-
     color: white;
     text-align: left;
     text-indent: 5px;
@@ -51,14 +51,13 @@ header {
 /* FOOTER ****************************************** */
 
 footer {
-    margin-top: 40px;
+    margin-top: 10px;
     background-color: black;
     display: flex;
     vertical-align: middle;
     color: white;
     justify-content: center;
     padding: 10px;
-    height: 50px;
     box-shadow: 0 0 10px rgb(137, 137, 138);
 }
 
@@ -113,8 +112,9 @@ footer {
 }
 
 #divMenu {
+    font-size: 0.7em;
+    width: 160px;
     position: absolute;
-    width: 200px;
     background-color: black;
     display: none;
     right: 15px;
@@ -148,11 +148,62 @@ footer {
 
 /* ADMIN ****************************************** */
 
-#tabAdmin {
+#tabAdmin,
+#tabAdminLogs {
     border-collapse: collapse;
     width: 95%;
     margin: 40px auto;
     text-align: center;
+    font-size: 0.6em;
+}
+
+#tabAdminLogs thead th:nth-child(1),
+#tabAdminLogs tbody td:nth-child(1) {
+    font-style: italic;
+    width: 10%;
+}
+
+#tabAdminLogs thead th:nth-child(2),
+#tabAdminLogs tbody td:nth-child(2) {
+    width: 20%;
+}
+
+#tabAdminLogs thead th:nth-child(3),
+#tabAdminLogs tbody td:nth-child(3) {
+    width: 20%;
+}
+
+#tabAdminLogs thead th:nth-child(4),
+#tabAdminLogs tbody td:nth-child(4) {
+    text-align: center;
+    text-indent: 2px;
+    width: 10%;
+}
+
+#tabAdminLogs tbody td:nth-child(4) {
+    text-align: left;
+}
+
+#tabAdminLogs thead th:nth-child(5),
+#tabAdminLogs tbody td:nth-child(5) {
+    text-align: center;
+    text-indent: 2px;
+    display: none;
+}
+
+#tabAdminLogs tbody td:nth-child(5) {
+    text-align: left;
+}
+
+#tabAdminLogs thead th:nth-child(6),
+#tabAdminLogs tbody td:nth-child(6) {
+    width: 40%;
+    text-align: center;
+    text-indent: 2px;
+}
+
+#tabAdminLogs tbody td:nth-child(6) {
+    text-align: left;
 }
 
 #tdNoResults {
@@ -237,23 +288,28 @@ footer {
     color: black;
 }
 
-#tabAdmin thead {
-    font-size: 0.9em;
-    color: darkslategray;
+#tabAdmin thead,
+#tabAdminLogs head {    
     padding: 5px;
 }
 
-#tabAdmin th {
+#tabAdmin th,
+#tabAdminLogs th {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: darkslategray;
+    padding: 5px;
     border-bottom: 2px solid black;
     border-collapse: collapse;
 }
 
-#tabAdmin tbody {
-    font-size: 0.7em;
+#tabAdmin tbody,
+#tabAdminLogs tbody {
     color: darkslategray;
 }
 
-#tabAdmin tr td {
+#tabAdmin tr td,
+#tabAdminLogs tr td {
     border-bottom: 1px dotted black;
     border-collapse: collapse;
     padding: 3px;
@@ -413,7 +469,7 @@ footer {
     padding: 5px;
     display: flex;
     box-shadow: 0 0 5px black;
-    cursor: crosshair;
+    cursor: pointer;
     justify-self: right;
 }
 
@@ -485,10 +541,28 @@ p.date {
     color: darkslategray;
 }
 
-a.author {
+button.author {
+    font-size: 0.9em;
+    font-weight: bold;
     padding: 3px 15px;
-    color: darkblue;
-    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: darkslategray;
+}
+
+button.author:hover {
+    text-shadow: 0 0 5px black;
+    color: white;
+}
+
+button.authorAdmin {
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 3px 15px;
+    border: none;
+    background-color: transparent;
+    color: darkslategray;
 }
 
 p.extract {
@@ -503,6 +577,10 @@ a.readMore {
     color: red;
     text-decoration: none;
     padding: 3px 15px;
+}
+
+a.readMore:hover {
+    color: darkblue;
 }
 
 /* FIN BLOG ****************************************** */
@@ -809,6 +887,7 @@ p.content {
 
 /* 430 */
 @media screen and (min-width:430px) {
+
     .secPages {
         font-size: 0.9em;
     }
@@ -821,10 +900,62 @@ p.content {
     .formPages {
         grid-template-columns: 1fr 1fr;
     }
+
+    #tabAdmin,
+    #tabAdminLogs {
+        font-size: 0.7em;
+    }
+
+    #tabAdmin th,
+    #tabAdminLogs th {
+        font-size: 1.2em;
+    }
+
 }
 
 /* 640 */
 @media screen and (min-width:640px) {
+
+    #divMenu {
+        font-size: 0.8em;
+        width: 180px;
+    }
+
+    #tabAdmin th,
+    #tabAdminLogs th {
+        font-size: 1.3em;
+    }
+
+    #tabAdminLogs thead th:nth-child(1),
+    #tabAdminLogs tbody td:nth-child(1) {
+        width: 5%;
+    }
+
+    #tabAdminLogs thead th:nth-child(2),
+    #tabAdminLogs tbody td:nth-child(2) {
+        width: 15%;
+    }
+
+    #tabAdminLogs thead th:nth-child(3),
+    #tabAdminLogs tbody td:nth-child(3) {
+        width: 15%;
+    }
+
+    #tabAdminLogs thead th:nth-child(4),
+    #tabAdminLogs tbody td:nth-child(4) {
+        width: 10%;
+    }
+
+    #tabAdminLogs thead th:nth-child(5),
+    #tabAdminLogs tbody td:nth-child(5) {
+        display: table-cell;
+        width: 25%;
+    }
+
+    #tabAdminLogs thead th:nth-child(6),
+    #tabAdminLogs tbody td:nth-child(6) {
+        text-indent: 2px;
+    }
 
     p.title {
         font-size: 1.5em;
@@ -923,6 +1054,11 @@ p.content {
 /* 768 */
 @media screen and (min-width:768px) {
 
+    #tabAdmin,
+    #tabAdminLogs {
+        font-size: 0.8em;
+    }
+
     p.title {
         font-size: 1.8em;
     }
@@ -990,6 +1126,16 @@ p.content {
 
 /* 992 */
 @media screen and (min-width:992px) {
+
+    #divMenu {
+        font-size: 0.9em;
+        width: 200px;
+    }
+
+    #tabAdmin,
+    #tabAdminLogs {
+        font-size: 0.9em;
+    }
 
     p.title {
         font-size: 2em;

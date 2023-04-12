@@ -1,7 +1,7 @@
 <%- include( 'templates/header' ,{urlTitle} ) %>
 
     <main>
-        <h1 class="h1Admin">Administrador</h1>
+        <h1 class="h1Admin">Administrador: entradas</h1>
 
         <section class="secPages">
             <p>Total de entradas: <span class="spnPages"><%- entries.totalEntries %></span></p>
@@ -67,7 +67,7 @@
 
                         <tr>
                             <td><%- ind + 1 + ((entries.page-1) * entries.limit) %></td>
-                            <td><img class="imgTable" src="/media/<%- entry.image %>" alt=""></td>
+                            <td><img class="imgTable" src="/media/<%- entry.image %>" alt="Imagen de la entrada de <%- entry.name %>"></td>
                             <td><%- entry.name %></td>
                             <td><%- entry.title %></td>
                             <td><%- entry.extract %></td>
@@ -103,7 +103,7 @@
         <div id="divPages">
 
             <% if (entries.page !=1) { %>
-                <button><i id="prevPage" class="fa-solid fa-circle-arrow-left"></i></button>
+                <button title="Ir a la página anterior"><i id="prevPage" class="fa-solid fa-circle-arrow-left"></i></button>
             <% } else { %>
                 <button disabled><i class="btnFlecha fa-solid fa-circle-arrow-left"></i></button>
             <% } %>
@@ -111,7 +111,7 @@
             <p class="pPage"><%- entries.page %></p>         
 
             <% if (entries.totalPages !=entries.page) { %>
-                <button><i id="nextPage" class="fa-solid fa-circle-arrow-right"></i></button>
+                <button title="Ir a la página siguiente"><i id="nextPage" class="fa-solid fa-circle-arrow-right"></i></button>
             <% } else { %>
                 <button disabled="true"><i class="btnFlecha fa-solid fa-circle-arrow-right"></i></button>
             <% } %>

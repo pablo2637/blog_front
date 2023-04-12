@@ -1,0 +1,110 @@
+<%- include( 'templates/headerSE' ,{urlTitle} ) %>
+
+    <main>
+        <h1 class="h1Admin">Administrador: actividad de usuarios</h1>
+
+        <section class="secPages">
+            <p>Total de entradas: <span class="spnPages"><%- entries.totalEntries %></span></p>
+            <p>Entradas por página: <span class="spnPages"><%- entries.limit %></span></p>
+            <p>Total de páginas: <span class="spnPages"><%- entries.totalPages %></span></p>
+            <p>Página actual: <span class="spnPages"><%- entries.page %></span></p>
+        </section>
+
+
+        <form class="formPages" action="/admin/logs" method="POST">
+            <div class="divOpts1">
+                <label for="limit">Entradas por página:</label>
+                <select name="limit" id="limit">
+                    <% for( let i=1; i < 6; i++ ) { %>
+
+                        <% if (entries.limit==(i*5)) { %>
+                            <option value="<%- i*5 %>" selected><%- i*5 %></option>
+                        <% } else { %>
+                            <option value="<%- i*5 %>"><%- i*5 %></option>
+                        <% } %>
+
+                    <% } %>
+                </select>
+            </div>  
+
+            <div class="divOpts2">
+                <label for="page">Ir a Página:</label>
+                <select name="page" id="page">
+
+                    <% for( let i=1; i <=entries.totalPages; i++ ) { %>
+
+                        <% if (entries.page==i) { %>
+                            <option value="<%- i %>" selected><%- i %></option>
+                        <% } else { %>
+                            <option value="<%- i %>"><%- i %></option>
+                        <% } %>
+
+                    <% } %>
+
+                </select>
+            </div>
+
+        </form>
+
+        <table id="tabAdminLogs">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Evento</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% if (entries.data) { %>
+                    <% var cont=0 %>         
+                    <% entries.data.forEach((entry,ind)=> { %>
+                        <% cont++ %>
+
+                        <tr>
+                            <td><%- cont + ((entries.page-1) * entries.limit) %></td>                            
+                            <td><%- entry.date %></td>
+                            <td><%- entry.time %></td>
+                            <td><%- entry.name %></td>
+                            <td><%- entry.email %></td>
+                            <td><%- entry.event %></td>                            
+                        </tr>
+
+                    <% }) %>
+
+                <% } else { %>
+                     
+                    <tr>
+                        <td id="tdNoResults" colspan="6">Aún no hay entradas en la base de datos...</td>
+                    </tr>
+
+                <% } %>
+
+            </tbody>
+
+        </table>
+
+        <div id="divPages">
+
+            <% if (entries.page !=1) { %>
+                <button title="Ir a la página anterior"><i id="prevPage" class="fa-solid fa-circle-arrow-left"></i></button>
+            <% } else { %>
+                <button disabled><i class="btnFlecha fa-solid fa-circle-arrow-left"></i></button>
+            <% } %>
+             
+            <p class="pPage"><%- entries.page %></p>         
+
+            <% if (entries.totalPages !=entries.page) { %>
+                <button title="Ir a la página siguiente"><i id="nextPage" class="fa-solid fa-circle-arrow-right"></i></button>
+            <% } else { %>
+                <button disabled="true"><i class="btnFlecha fa-solid fa-circle-arrow-right"></i></button>
+            <% } %>
+        </div>
+
+    </main>
+
+    <%- include('templates/footerSE.ejs') %>
