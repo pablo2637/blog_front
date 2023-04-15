@@ -1,7 +1,7 @@
 <%- include( 'templates/header' ,{urlTitle,user} ) %>
 
     <main>
-        <h1 class="h1Admin">Nueva entrada</h1>
+        <h1 class="h1Admin"><%- user.name %>: nueva entrada</h1>
 
         <div class="divEdit">
 
@@ -37,7 +37,7 @@
                 <div class="btns">                    
                     <button id="btnSubmit" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
                     
-                    <a id="btnCancelar" href="/blog"><i class="fa-solid fa-person-running"></i> Cancelar</a>
+                    <a id="btnCancelar" href="/"><i class="fa-solid fa-person-running"></i> Cancelar</a>
                 </div>
 
             </form>

@@ -5,10 +5,17 @@
 
         <div id="divNE">
             <% if (user) { %>            
-                <h2 id="h2Name">Hola <%- user.name %>!</h2>
-            <% } %>
 
-            <a id="newEntry" href="/new" title="Crear una entrada nueva"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
+                <h2 id="h2Name">Hola <%- user.name %>!</h2>
+                <a id="newEntry" href="/new" title="Crear una entrada nueva"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
+
+            <% } else { %>
+
+                <h2 id="h2Name">Hola!</h2>
+                <button disabled="true" id="newEntryDis" title="Sólo los usuarios registrados pueden crear nuevas entradas"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</button>
+
+            <% } %>
+            
         </div>
 
         <section class="secSearch">
@@ -75,7 +82,7 @@
             <% if (msg !='' ) { %>
 
                 <p id="pMsg">Has buscado: '<%- msg %>'...</p>
-                <a id="goBlog" href="/blog"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
+                <a id="goBlog" href="/"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
 
             <% } %>
 
@@ -114,7 +121,7 @@
         <% } else { %>
 
             <p id="pMsgNoResults"><i class="fa-regular fa-face-sad-cry"></i> <%- msg %></p>
-            <a id="goBlog" href="/blog"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
+            <a id="goBlog" href="/"><i class="fa-regular fa-rectangle-list"></i> Ver todas las entradas...</a>
 
             <% 
                 entries.page=0;

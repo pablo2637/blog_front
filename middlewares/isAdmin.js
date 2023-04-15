@@ -31,7 +31,7 @@ const isAdmin = async (req, res, next) => {
         const user = await getUserDataCookie(req, res);
 
         if (user.rol != 'admin')
-            res.redirect('/blog');
+            res.redirect('/');
 
         else
             next();

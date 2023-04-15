@@ -23,17 +23,21 @@
         </div>
             
         <div id="divMenu">
-            <nav id="navContenedor">
+            <nav >
+
+                <ul id="navContenedor">
             
-            <% if (user && !urlTitle.includes('registro')) { %>
-                <a href="/blog">Blog</a>
-                <a href="/email">Mis publicaciones</a>
-                <a href="/user/change">Cambiar password</a>
-                <a href="/user/logout">Logout</a>
-            <% } else { %>
-                <a href="/user/verify">Login</a>
-                <a href="/user/register">Resgistrarse</a>
-            <% } %>
+                    <% if (user && !urlTitle.includes('registro')) { %>
+                        <li><a href="/">Blog</a></li>
+                        <li><a href="/new">Nueva entrada</a></li>
+                        <li><a href="/email">Mis publicaciones</a></li>
+                        <li><a href="/user/change">Cambiar password</a></li>
+                        <li><a href="/user/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/user/verify">Login</a></li>
+                        <li><a href="/user/register">Resgistrarse</a></li>
+                    <% } %>
+                </ul>
         
             </nav>        
         </div>
