@@ -70,7 +70,7 @@ const setUserToken = async (req, res, token) => {
 const getUserDataCookie = async (req, res) => {
 
     const { userData } = req.cookies;
-    return userData;
+    return userData == undefined ? '' : userData;
 };
 
 

@@ -25,6 +25,10 @@
                 <input type="password" name="passwordR" id="passwordR" autocomplete="off" value="<%- user.passwordR %>">
                 <span class="spnErrorReg"><%- error.passwordR %></span>
              
+                <div id="divMsgRegister">
+                    <p>¿Ya tienes una cuenta?<a title="Entra en tu cuenta aquí" href="../user/login"> Loguéate</a></p>
+                </div>
+
                 <div id="btnsLogin">
                     <button id="btnSubmitRegister" type="submit"><i class="fa-regular fa-address-card"></i> Registrarme</button>                    
                     <a id="btnCancelarRegister" href="/"><i class="fa-solid fa-person-running"></i> Cancelar</a>

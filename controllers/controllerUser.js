@@ -112,7 +112,7 @@ const registerUser = async (req, res, next) => {
             await setUserCookie(req, res, user);
             await setUserToken(req, res, token);
 
-            res.redirect('/blog');
+            res.redirect('/');
 
         } else {
 
@@ -188,7 +188,7 @@ const loginUser = async (req, res) => {
                 res.redirect('/admin');
 
             else
-                res.redirect('/blog');
+                res.redirect('/');
 
         } else {
 
@@ -272,7 +272,7 @@ const redirectUser = async (req, res) => {
         res.redirect('/admin');
 
     else
-        res.redirect('/blog');
+        res.redirect('/');
 
 };
 
@@ -332,7 +332,7 @@ const changePassword = async (req, res, next) => {
         const { data } = await fetchData(url, method, req.body);
 
         if (data.ok)
-            res.redirect('/blog');
+            res.redirect('/');
 
         else {
 

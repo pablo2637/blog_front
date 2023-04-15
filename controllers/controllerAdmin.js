@@ -61,7 +61,9 @@ const showAdmin = async (req, res) => {
 
             if (!data.msg.includes('No hay'))
                 data.data.map(entry => {
+
                     entry.date = new Date(entry.date).toLocaleDateString();
+
                     entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
                 });
 
@@ -413,17 +415,19 @@ const changePassword = async (req, res) => {
 const showLogs = async (req, res) => {
 
     try {
-        
+
         const { url, method } = getURLs('getLogs', req);
 
         const { data } = await fetchData(url, method);
 
         if (data.ok) {
-            
+
             if (!data.msg.includes('No hay'))
                 data.data.map(entry => {
-                    entry.date = new Date(entry.date).toLocaleDateString();
+
+                    entry.date = new Date(entry.date).toDateString();                    
                     entry.time = new Date(entry.date + ' ' + entry.time).toLocaleTimeString();
+                    entry.date = new Date(entry.date).toLocaleDateString('es-ES', { weekday: "short", year: "numeric", month: "long", day: "numeric" });
                 });
 
             res.render('admin/logs', {

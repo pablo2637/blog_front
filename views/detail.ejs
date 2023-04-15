@@ -3,7 +3,7 @@
     <main>
         <div class="divContainer">
             <div class="divDetails">
-            <a id="btnBack" href="/blog"><i class="fa-solid fa-left-long"></i> Volver</a>
+            <a id="btnBack" href="/"><i class="fa-solid fa-left-long"></i> Volver</a>
             
             <% if (entry.email==user.email) { %>
                 <a id="btnEdit" href="/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>     
@@ -12,7 +12,11 @@
 
             <p class="title"><%- entry.title %></p>
 
-            <a class="author" href="/email/<%- entry.email %>"><%- entry.name %></a>
+            <form action="/email" method="POST">
+                <input type="hidden" name="email" value="<%- entry.email %>">
+                <button class="author" title="Ver todas las entradas de <%- entry.name %>"><%- entry.name %></button>
+            </form>
+
             <p class="date"><%- entry.date %> <%- entry.time%> hrs.</p>
 
             <img id="imgDetail" src="/media/<%- entry.image %>" alt="Imagen de la entrada de <%- user.name %>">

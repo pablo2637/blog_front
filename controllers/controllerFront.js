@@ -176,7 +176,7 @@ const searchEntriesByEmail = async (req, res) => {
 
         if (data.ok) {
 
-            let message = '';
+            let message = `entradas de ${data.data[0].name}`;
 
             if (data.data)
                 data.data.map(entry => {

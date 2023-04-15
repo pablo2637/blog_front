@@ -1,7 +1,7 @@
 <%- include( 'templates/header' ,{urlTitle,user} ) %>
 
     <main>
-        <h1 class="h1Admin">Editar</h1>
+        <h1 class="h1Admin"><%- user.name %>: editar entrada</h1>
 
         <div class="divEdit">
 
@@ -22,7 +22,7 @@
                 <span class="spnError"><%- msg.extract %></span>
 
                 <label for="content">Contenido:</label>
-                <textarea name="content" id="content" rows="4"><%- entry.content % autocomplete="off"></textarea>
+                <textarea name="content" id="content" rows="4" autocomplete="off"><%- entry.content %></textarea>
                 <span class="spnError"><%- msg.content %></span>
 
                 <img src="/media/<%- entry.image %>" alt="Imagen de la entrada de <%- user.name %>">
