@@ -6,8 +6,19 @@
             <div class="divDetails">
 
                 <a id="btnBack" href="javascript:history.back()"><i class="fa-solid fa-left-long"></i> Volver</a>        
-                <a id="btnEdit" title="Editar esta entrada" href="/admin/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a> 
-            
+                <div id="divEditBtns">
+                    <a id="btnEdit" title="Editar esta entrada" href="/admin/edit/<%- entry.entryid  %>"><i class="fa-solid fa-pen-to-square"></i> Editar</a> 
+                    <button id="btnDelete" title="Borrar esta entrada"><i data-entryid="<%- entry.entryid %>" class="cancelEditDelete fa-solid fa-eraser"></i> Borrar</button>
+                </div>            
+            </div>
+
+            <div id="divConfirm">
+                <p>Estas seguro que quieres borrar esta entrada?</p>
+
+                <div id="divBtnsConfirm">
+                    <a title="Borrar definitivamente" href="/admin/delete/<%- entry.entryid %>"><i class="fa-solid fa-eraser"></i></a>
+                    <button title="Cancelar"><i class="cancelEditDelete fa-solid fa-rectangle-xmark"></i></button>
+                </div>
             </div>
 
             <p class="title"><%- entry.title %></p>

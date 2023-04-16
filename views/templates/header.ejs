@@ -28,9 +28,14 @@
                 <ul id="navContenedor">
             
                     <% if (user && !urlTitle.includes('registro')) { %>
-                        <li><a href="/">Blog</a></li>
-                        <li><a href="/new">Nueva entrada</a></li>
-                        <li><a href="/email">Mis publicaciones</a></li>
+                        <% if (user.rol=='admin') { %>
+                            <li><a href="/admin/">Dashboard</a></li>                            
+                            <li><a href="/admin/logs">Actividad de usuarios</a></li>
+                        <% } else { %>
+                                <li><a href="/new">Nueva entrada</a></li>
+                                <li><a href="/email">Mis publicaciones</a></li>
+                        <% } %>
+                        <li><a href="/">Blog</a></li>                        
                         <li><a href="/user/change">Cambiar password</a></li>
                         <li><a href="/user/logout">Logout</a></li>
                     <% } else { %>
