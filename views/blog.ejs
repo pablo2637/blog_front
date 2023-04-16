@@ -7,7 +7,12 @@
             <% if (user) { %>            
 
                 <h2 id="h2Name">Hola <%- user.name %>!</h2>
-                <a id="newEntry" href="/new" title="Crear una entrada nueva"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>
+
+                <% if (user.rol=='admin') { %>
+                    <button disabled="true" id="newEntryDis" title="El administrador no puede crear nuevas entradas"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</button> 
+                <% } else { %>
+                    <a id="newEntry" href="/new" title="Crear una entrada nueva"><i class="fa-solid fa-pen-to-square"></i> Nueva Entrada</a>     
+                <% } %>                
 
             <% } else { %>
 

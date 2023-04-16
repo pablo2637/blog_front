@@ -127,7 +127,7 @@ footer {
     padding: 5px;
     box-shadow: 0 0 5px 1px black;
 
-    transform: translate3d(110%, 0px, 0px);
+    transform: translate3d(120%, 0px, 0px);
     transition: transform 0.20s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
     z-index: 1001;
 }
@@ -637,7 +637,7 @@ a.readMore:hover {
 }
 
 #divMsgLogin a:hover,
-#divMsgRegister a:hover {    
+#divMsgRegister a:hover {
     color: yellowgreen;
 }
 
@@ -783,27 +783,80 @@ a.readMore:hover {
     margin-bottom: 30px;
     margin-top: 10px;
     text-align: center;
+    align-items: start;
 }
 
-#btnEdit {
-    justify-self: right;
+#divConfirm {
+    width: 250px;
+    font-size: 0.8em;
+    text-align: center;
+    position: fixed;
+    background-color: red;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+    right: 20px;
+    color: white;    
+    padding: 10px;
+
+    transform: translate3d(120%, 0px, 0px);
+    transition: transform 0.20s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
+    z-index: 1001;
 }
+
+#divBtnsConfirm {
+    text-align: center;
+}
+
+#divConfirm button,
+#divConfirm a {
+    border: 1px solid black;
+    background-color: transparent;
+    color: black;
+    font-size: 0.9em;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+}
+
+#divConfirm button:hover,
+#divConfirm a:hover {
+    background-color: yellowgreen;
+}
+
+
+#divConfirm.mostrarNav {
+    transform: translate3d(0px, 0px, 0px);
+}
+
 
 #btnBack {
     justify-self: left;
 }
 
+
+#divEditBtns {
+    justify-self: right;
+}
+
 #btnBack,
-#btnEdit {
+#btnEdit,
+#btnDelete {
+    display: block;
+    background-color: white;
+    cursor: pointer;
     width: 100px;
+    height: 30px;
     text-decoration: none;
     color: darkslategray;
     border: 1px ridge black;
     padding: 5px;
+    margin: 5px;
 }
 
 #btnBack:hover,
-#btnEdit:hover {
+#btnEdit:hover,
+#btnDelete:hover {
     color: yellowgreen;
     background-color: black;
 }
@@ -1161,6 +1214,11 @@ p.content {
         width: 550px;
     }
 
+    #divConfirm {
+        width: 320px;
+        font-size: 0.9em;
+    }
+
 }
 
 /* 992 */
@@ -1288,6 +1346,11 @@ p.content {
     #imgDetail {
         height: 500px;
         width: 780px;
+    }
+
+    #divConfirm {
+        width: 380px;
+        font-size: 1em;
     }
 
 }
