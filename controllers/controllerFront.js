@@ -160,7 +160,7 @@ const searchEntries = async (req, res) => {
 const searchEntriesByEmail = async (req, res) => {
 
     try {
-
+console.log(req.body,req.params)
         if (req.body.email)
             req.params.email = req.body.email;
 
@@ -170,11 +170,14 @@ const searchEntriesByEmail = async (req, res) => {
             req.params.email = user.email;
         }
 
+        console.log('email', req.params.email)
+
         const { url, method } = getURLs('getEntriesByEmail', req);
 
         let { data } = await fetchData(url, method);
 
         if (data.ok) {
+            console.log('data', data)
 
             let message = `entradas de ${data.data[0].name}`;
 
